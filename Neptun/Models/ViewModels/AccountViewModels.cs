@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Neptun.Models
+namespace Neptun.Models.ViewModels
 {
     public class ExternalLoginConfirmationViewModel
     {

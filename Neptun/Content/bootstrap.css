@@ -4271,13 +4271,15 @@ textarea.input-group-sm > .input-group-btn > .btn {
   }
 }
 
+
 @media (min-width: 768px) {
   .navbar-nav {
-    float: left;
-    margin: 0;
+      width: 100%;
+      text-align: center;
   }
   .navbar-nav > li {
-    float: left;
+      float: none;
+      display: inline-block;
   }
   .navbar-nav > li > a {
     padding-top: 15px;
@@ -6814,3 +6816,4 @@ td.visible-print {
     display: none !important;
   }
 }
+

@@ -1,0 +1,64 @@
+﻿@using System.Diagnostics.Eventing.Reader
+@model IEnumerable<Neptun.Models.ViewModels.ProductAdminViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3>Продукция</h3>
+
+<p>
+    @Html.ActionLink("Добавить", "Create")
+</p>
+<p>
+    @Html.ActionLink("К виду пользователя", "Index")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            <text>PDF</text>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photo)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @if (!string.IsNullOrEmpty(item.ButtonDescriptionName))
+                {
+                    @Html.ActionLink(item.ButtonDescriptionName, "DisplayPdf", new { id = item.Id })
+                }
+                else
+                {
+                    <p>Нету</p>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductType)
+            </td>
+            <td class="col-lg-4">
+                @Html.Raw("<img class='img - thumbnail' alt='Cinque Terre' src=\"data:image/jpeg;base64,"
+                               + Convert.ToBase64String(item.Photo) + "\" />")
+            </td>
+            <td>
+                @Html.ActionLink("Изменить", "Edit", new { id = item.Id })
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+                @Html.ActionLink("Описание", "Info", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

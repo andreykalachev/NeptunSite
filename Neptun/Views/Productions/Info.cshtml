@@ -1,0 +1,25 @@
+﻿@model Neptun.Models.ViewModels.ProductInfoViewModel
+
+@{
+    ViewBag.Title = "Info";
+}
+
+
+<h3>
+    @Html.DisplayFor(model => model.Title)
+    @if (!string.IsNullOrEmpty(Model.ButtonDescriptionName))
+    {
+    <button class="btn btn-info" onclick="location.href='@Url.Action("DisplayPdf", "Productions", new { id = Model.Id })'">@Html.DisplayFor(modelItem => Model.ButtonDescriptionName) </button>
+    }
+</h3>
+<div class="row">
+    <div class="col-lg-5">
+        @Html.Raw("<img class='img - thumbnail' alt='Cinque Terre' src=\"data:image/jpeg;base64,"
+                                + Convert.ToBase64String(Model.Photo) + "\" />")
+    </div>
+    <div class=" padding-left-10">
+        @Html.Raw(Model.Description)
+    </div>
+</div>
+
+

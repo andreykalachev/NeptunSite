@@ -1,30 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Neptun.Models;
+using Neptun.Persistence;
 
 namespace Neptun.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+
+        private DataContext db = new DataContext();
+
+        public async Task<ActionResult> Index()
         {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            var company = await db.Companies.FirstOrDefaultAsync();
+            return View(company);
         }
     }
 }
