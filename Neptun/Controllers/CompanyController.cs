@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Neptun.Models;
+using Neptun.Models.ViewModels;
 using Neptun.Persistence;
 
 namespace Neptun.Controllers
@@ -20,6 +21,20 @@ namespace Neptun.Controllers
         public async Task<ActionResult> Index()
         {
             var company = await db.Companies.FirstOrDefaultAsync();
+            var employees = await db.Employees.ToListAsync();
+
+            var contacts = new ContactsViewModel
+            {
+                Company = company,
+                Employees = employees
+            };
+            return View(contacts);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> AdminInfo()
+        {
+            var company = await db.Companies.FirstOrDefaultAsync();
             if (company is default(Company))
             {
                 return Redirect("/Company/Create");
@@ -28,6 +43,7 @@ namespace Neptun.Controllers
         }
 
         // GET: Companies/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -37,6 +53,7 @@ namespace Neptun.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,PhoneNumber,Fax,Address,Email")] Company company)
         {
@@ -51,6 +68,7 @@ namespace Neptun.Controllers
         }
 
         // GET: Companies/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -69,6 +87,7 @@ namespace Neptun.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,PhoneNumber,Fax,Address,Email")] Company company)
         {

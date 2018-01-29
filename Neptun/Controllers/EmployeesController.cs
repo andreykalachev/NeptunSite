@@ -17,6 +17,7 @@ namespace Neptun.Controllers
         private DataContext db = new DataContext();
 
         // GET: Employees
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Index()
         {
             return View(await db.Employees.ToListAsync());
@@ -25,6 +26,7 @@ namespace Neptun.Controllers
         // GET: Employees/Details/5
 
         // GET: Employees/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -34,6 +36,7 @@ namespace Neptun.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,LastName,FirstName,Patronymic,Position,PhoneNuber,Email")] Employee employee)
         {
@@ -48,6 +51,7 @@ namespace Neptun.Controllers
         }
 
         // GET: Employees/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -66,6 +70,7 @@ namespace Neptun.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,LastName,FirstName,Patronymic,Position,PhoneNuber,Email")] Employee employee)
         {
@@ -79,6 +84,7 @@ namespace Neptun.Controllers
         }
 
         // GET: Employees/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -94,6 +100,7 @@ namespace Neptun.Controllers
         }
 
         // POST: Employees/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)

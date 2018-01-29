@@ -219,19 +219,18 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Company.cs" />
-    <Compile Include="Models\DTO\ProductDeleteDto.cs" />
-    <Compile Include="Models\DTO\ProductInfoDto.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Enum\ProductType.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Production.cs" />
-    <Compile Include="Models\ViewModels\AccountViewModels.cs" />
+    <Compile Include="Models\ViewModels\ContactsViewModel.cs" />
+    <Compile Include="Models\ViewModels\Identity\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ViewModels\ManageViewModels.cs" />
-    <Compile Include="Models\ViewModels\ProductAdminViewModel.cs" />
-    <Compile Include="Models\ViewModels\ProductDeleteViewModel.cs" />
-    <Compile Include="Models\ViewModels\ProductIndexViewModel.cs" />
-    <Compile Include="Models\ViewModels\ProductInfoViewModel.cs" />
+    <Compile Include="Models\ViewModels\Identity\ManageViewModels.cs" />
+    <Compile Include="Models\ViewModels\Product\ProductAdminViewModel.cs" />
+    <Compile Include="Models\ViewModels\Product\ProductDeleteViewModel.cs" />
+    <Compile Include="Models\ViewModels\Product\ProductIndexViewModel.cs" />
+    <Compile Include="Models\ViewModels\Product\ProductInfoViewModel.cs" />
     <Compile Include="Persistence\DataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -249,6 +248,7 @@
     <Content Include="Pictures\MainPage.jpg" />
     <Content Include="Pictures\Neptun_animat.gif" />
     <Content Include="Pictures\sky.jpg" />
+    <Content Include="Pictures\sky1.jpg" />
     <Content Include="Pictures\Web-world.jpg" />
     <Content Include="Pictures\zavod-neptun.jpg" />
     <Content Include="Pictures\zavod.gif" />
@@ -268,6 +268,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="Properties\PublishProfiles\Neptun20180127114900 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -351,6 +352,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\News\AdminInfo.cshtml" />
     <Content Include="Views\Productions\Info.cshtml" />
+    <Content Include="Views\Company\AdminInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

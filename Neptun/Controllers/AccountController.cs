@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Neptun.Models;
 using Neptun.Models.ViewModels;
+using Neptun.Models.ViewModels.Identity;
 
 namespace Neptun.Controllers
 {

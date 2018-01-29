@@ -1,48 +1,68 @@
-﻿@model Neptun.Models.Company
+﻿@model Neptun.Models.ViewModels.ContactsViewModel
 
 @{
     ViewBag.Title = "Index";
 }
-
-<h3>Компания</h3>
-
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Fax)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Fax)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-    </dl>
+<div class="jumbotron">
+    <div class="row background-sky">
+        <div class="col-md-3 pull-right body">
+            <div class="card-header">
+                <h2>Контакты</h2>
+                <h4>@Html.DisplayNameFor(model => model.Company.Fax): @Html.DisplayFor(model => model.Company.Fax)</h4>
+                <h4>@Html.DisplayNameFor(model => model.Company.PhoneNumber): @Html.DisplayFor(model => model.Company.PhoneNumber)</h4>
+                <h4>@Html.DisplayNameFor(model => model.Company.Email): @Html.DisplayFor(model => model.Company.Email)</h4>
+                <h4>@Html.DisplayNameFor(model => model.Company.Address): @Html.DisplayFor(model => model.Company.Address)</h4>
+            </div>
+        </div>
+    </div>
+    <h2 class="text-center">Торговый дом Нептун</h2>
 </div>
-<p>
-    @Html.ActionLink("Изменить", "Edit", new { id = Model.Id })
-</p>
+<div class="row padding-top-20">
+    @foreach (var item in Model.Employees)
+    {
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="text-center">@Html.DisplayFor(modelItem => item.Position)</h4>
+                </div>
+                <div class="panel-body panel-info text-center padding-bottom-5  min-height-50">
+                    <p class="lead">
+                        <strong>@Html.DisplayFor(modelItem => item.LastName) @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.Patronymic)</strong>
+                    </p>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <strong>@Html.DisplayNameFor(modelItem => item.PhoneNuber):</strong>
+                        <span class="pull-right">@Html.DisplayFor(modelItem => item.PhoneNuber)</span>
+                    </li>
+                    <li class="list-group-item">
+                        <strong>@Html.DisplayNameFor(modelItem => item.Email):</strong>
+                        <span class="pull-right">@Html.DisplayFor(modelItem => item.Email)</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="padding-bottom-30">
+    <h3>Ищите нас на карте!</h3>
+    <div id="map"></div>
+</div>
+<script>
+    function initMap() {
+        var uluru = { lat: 46.484875, lng: 30.664947};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 13,
+            center: uluru
+        });
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        });
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRBMFTA3uiUZiFGZEqCTzVfZ_H6-RaSpQ&callback=initMap">
+</script>
+

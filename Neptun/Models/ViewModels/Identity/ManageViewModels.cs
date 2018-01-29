@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace Neptun.Models.ViewModels
+namespace Neptun.Models.ViewModels.Identity
 {
     public class IndexViewModel
     {

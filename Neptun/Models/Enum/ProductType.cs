@@ -9,9 +9,12 @@ namespace Neptun.Models.Enum
     public enum ProductType
     {
         [Display(Name = "ВЧ Обработка")]
-        HfProcessing,
+        HfProcessing = 0,
 
         [Display(Name = "ВЧ Связь и Защита")]
-        HfCommunicationAndProtection
+        HfCommunicationAndProtection = 1,
+
+        [Display(Name = "Другое")]
+        Other = 2
     }
 }

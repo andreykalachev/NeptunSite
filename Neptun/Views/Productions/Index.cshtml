@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Neptun.Models.ViewModels.ProductIndexViewModel>
+﻿@model IEnumerable<Neptun.Models.ViewModels.Product.ProductIndexViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -8,7 +8,7 @@
 
 @foreach (var item in Model) {
 <div class="col-lg-4">
-    <h4 class="card-title" ><a href=@Url.Action("Info", "Productions", new { id = item.Id })>@Html.DisplayFor(modelItem => item.Title)</a></h4>
+    <h4 class="card-title padding-left-10" ><a href=@Url.Action("Info", "Productions", new { id = item.Id })>@Html.DisplayFor(modelItem => item.Title)</a></h4>
     <div class="card-body">
         <a href=@Url.Action("Info", "Productions", new { id = item.Id })>
             @Html.Raw("<img class='img - thumbnail' alt='Cinque Terre' src=\"data:image/jpeg;base64,"
