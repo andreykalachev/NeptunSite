@@ -33,6 +33,9 @@
 .padding-top-20 {
     padding-top: 20px;
 }
+.padding-top-30 {
+    padding-top: 50px;
+}
 
 .padding-bottom-10 {
     padding-bottom: 10px;
@@ -58,86 +61,82 @@
     background-image: url("/Pictures/MainPage.jpg");
 }
 
+
 @media (min-width: 768px) {
     .min-height-50 {
         min-height: 100px;
     }
+}
 
 
-    /*
+/*
     Card
 */
 
-    .card {
-        position: relative;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        min-width: 0;
-        word-wrap: break-word;
-        background-clip: border-box;
-        border: 1px solid rgba(223, 215, 202, 0.75);
-        border-radius: 0.25rem;
-    }
+.card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-clip: border-box;
+    border: 1px solid rgba(223, 215, 202, 0.75);
+    border-radius: 0.25rem;
+}
+   
+.card-body {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+    margin-bottom: 20px;
+}
 
-    .card-body {
-        -webkit-box-flex: 1;
-        -ms-flex: 1 1 auto;
-        flex: 1 1 auto;
-        padding: 1.25rem;
-        margin-bottom: 20px;
-    }
+.card-title {
+    margin-bottom: 0.75rem;
+}
 
-    .card-title {
-        margin-bottom: 0.75rem;
-    }
+.card-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(248, 245, 240, 0.90);
+    border-bottom: 1px solid rgba(223, 215, 202, 0.75);
+}
 
-    .card-header {
-        padding: 0.75rem 1.25rem;
-        margin-bottom: 0;
-        background-color: rgba(248, 245, 240, 0.90);
-        border-bottom: 1px solid rgba(223, 215, 202, 0.75);
-    }
+.card-text:last-child {
+    margin-bottom: 0;
+}
 
-    .card-text:last-child {
-        margin-bottom: 0;
-    }
-
-    /*
+/*
     navbar
 */
-    @media (min-width: 768px) {
-        .navbar-nav {
-            float: none;
-            margin: 0 auto;
-            display: block;
-            text-align: center;
-        }
-
-            .navbar-nav > li {
-                display: inline-block;
-                float: none;
-            }
+@media (min-width: 768px) {
+    .navbar-nav {
+        float: none;
+        margin: 0 auto;
+        display: block;
+        text-align: center;
     }
 
-    /*
+    .navbar-nav > li {
+        display: inline-block;
+        float: none;
+    }
+}
+
+/*
     google maps
 */
 
-    #map {
-        height: 400px;
-        width: 100%;
-    }
+#map {
+    height: 400px;
+    width: 100%;
+}
 
-    /* Set width on the form input elements since they're 100% wide by default */
-    input,
-    select,
-    textarea {
-        max-width: 280px;
-    }
 
 

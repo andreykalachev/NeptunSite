@@ -42,12 +42,19 @@
                     {
                         <li>@Html.ActionLink("Работники", "Index", "Employees")</li>
                     }
+                    <li>@Html.ActionLink("Обратная связь", "Index", "FeedBacks")</li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li><a href='@Url.Action("AdminInfo", "FeedBacks")'><span class="glyphicon glyphicon-lock"></span></a></li>
+                    }
                 </ul>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
+    <div class="container body-content ">
+        <div class="padding-top-30">
+            @RenderBody()
+        </div>
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

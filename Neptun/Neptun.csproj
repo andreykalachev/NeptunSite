@@ -194,6 +194,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\FeedBacksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -217,10 +218,15 @@
     <Compile Include="Migrations\201801281643528_ButtonDescriptionNameAdded.Designer.cs">
       <DependentUpon>201801281643528_ButtonDescriptionNameAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801290122184_FeedbackClassAdded.cs" />
+    <Compile Include="Migrations\201801290122184_FeedbackClassAdded.Designer.cs">
+      <DependentUpon>201801290122184_FeedbackClassAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Enum\ProductType.cs" />
+    <Compile Include="Models\FeedBack.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Production.cs" />
     <Compile Include="Models\ViewModels\ContactsViewModel.cs" />
@@ -353,6 +359,9 @@
     <Content Include="Views\News\AdminInfo.cshtml" />
     <Content Include="Views\Productions\Info.cshtml" />
     <Content Include="Views\Company\AdminInfo.cshtml" />
+    <Content Include="Views\FeedBacks\Delete.cshtml" />
+    <Content Include="Views\FeedBacks\Index.cshtml" />
+    <Content Include="Views\FeedBacks\AdminInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -372,6 +381,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801281643528_ButtonDescriptionNameAdded.resx">
       <DependentUpon>201801281643528_ButtonDescriptionNameAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801290122184_FeedbackClassAdded.resx">
+      <DependentUpon>201801290122184_FeedbackClassAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -18,6 +18,7 @@ namespace Neptun.Persistence
         public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Production> Productions { get; set; }
+        public virtual DbSet<FeedBack> FeedBacks { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -42,6 +43,14 @@ namespace Neptun.Persistence
             #region Employee
 
             modelBuilder.Entity<Employee>().HasKey(x => x.Id);
+
+            #endregion
+
+            #region Feedback
+
+            modelBuilder.Entity<FeedBack>().HasKey(x => x.Id);
+            modelBuilder.Entity<FeedBack>().Property(x => x.Message).HasMaxLength(1000);
+            modelBuilder.Entity<FeedBack>().Property(x => x.PhoneNuber).IsOptional();
 
             #endregion
 
