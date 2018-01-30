@@ -11,10 +11,13 @@ namespace Neptun.Models.Enum
         [Display(Name = "ВЧ Обработка")]
         HfProcessing = 0,
 
-        [Display(Name = "ВЧ Связь и Защита")]
-        HfCommunicationAndProtection = 1,
+        [Display(Name = "ВЧ Связь")]
+        HfCommunication = 1,
+
+        [Display(Name = "ВЧ Защита")]
+        HfProtection = 2,
 
         [Display(Name = "Другое")]
-        Other = 2
+        Other = 3
     }
 }

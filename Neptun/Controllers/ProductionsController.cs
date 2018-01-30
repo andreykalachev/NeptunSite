@@ -9,6 +9,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Neptun.Models;
+using Neptun.Models.DTO;
+using Neptun.Models.Enum;
 using Neptun.Models.ViewModels.Product;
 using Neptun.Persistence;
 
@@ -19,15 +21,52 @@ namespace Neptun.Controllers
         private DataContext db = new DataContext();
 
         // GET: Productions
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int? page, ProductType? productType)
         {
-            return View(await db.Productions.Select(x => new ProductIndexViewModel
+            const int itemsPerPage = 9; 
+            var currentPageIndex = page ?? 0;
+            var pageCount = (int)Math.Ceiling((double)db.Productions.Count() / itemsPerPage);
+            if (currentPageIndex < 0 || currentPageIndex >= pageCount)
             {
-                Id = x.Id,
-                Title = x.Title,
-                ProductType = x.ProductType,
-                Photo = x.Photo
-            }).ToListAsync());
+                return HttpNotFound();
+            }
+
+            var view = new ProductIndexViewModel
+            {
+                CurrentPage = currentPageIndex,
+                PageCount = pageCount,
+                ProductType = productType
+            };
+
+            IQueryable<ProductIndexDto> query;
+
+            if (productType != null)
+            {
+                query = db.Productions.Where(x => x.ProductType == productType).Select(x =>
+                    new ProductIndexDto
+                    {
+                        Id = x.Id,
+                        Title = x.Title,
+                        ProductType = x.ProductType,
+                        Photo = x.Photo
+                    });
+            }
+            else
+            {
+                query = db.Productions.Select(x =>
+                    new ProductIndexDto
+                    {
+                        Id = x.Id,
+                        Title = x.Title,
+                        ProductType = x.ProductType,
+                        Photo = x.Photo
+                    });
+
+            }
+
+            view.Products = await query.OrderBy(x => x.Id).Skip(currentPageIndex * itemsPerPage).Take(itemsPerPage).ToListAsync();
+
+            return View(view);
         }
 
         [Authorize(Roles = "Admin")]
