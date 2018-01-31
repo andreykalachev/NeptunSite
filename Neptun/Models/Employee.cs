@@ -37,5 +37,8 @@ namespace Neptun.Models
         [EmailAddress(ErrorMessage = "Введите корректный Email")]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Display(Name = "Фото")]
+        public byte[] Photo { get; set; }
     }
 }

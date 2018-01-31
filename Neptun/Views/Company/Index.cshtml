@@ -15,12 +15,12 @@
             </div>
         </div>
     </div>
-    <h2 class="text-center">Торговый дом Нептун</h2>
+    <h2 class="text-center">ООО "Торговый дом Одесскаго завода "Нептун"</h2>
 </div>
 <div class="row padding-top-20">
     @foreach (var item in Model.Employees)
     {
-        <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="col-lg-3 col-md-4 col-sm-6 padding-10">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h4 class="text-center">@Html.DisplayFor(modelItem => item.Position)</h4>
@@ -29,6 +29,12 @@
                     <p class="lead">
                         <strong>@Html.DisplayFor(modelItem => item.LastName) @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.Patronymic)</strong>
                     </p>
+                </div>
+                <div class="panel-body panel-info text-center padding-bottom-5">
+                    <a href=@Url.Action("Info", "Productions", new { id = item.Id })>
+                        @Html.Raw("<img class='img - thumbnail' alt='Cinque Terre' src=\"data:image/jpeg;base64,"
+                                  + Convert.ToBase64String(item.Photo) + "\" />")
+                    </a>
                 </div>
                 <ul class="list-group">
                     <li class="list-group-item">

@@ -19,6 +19,44 @@
 /*
     Added Styles
 */
+.main-page-title {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: normal;
+    line-height: 1;
+    color: #343434;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+@media (min-width: 650px) {
+    .main-page-title {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 650px) {
+    .main-page-title {
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 570px) {
+    .main-page-title {
+        font-size: 20px;
+    }
+}
+@media (max-width: 470px) {
+    .logo {
+        width: 0;
+        height: 0;
+    }
+}
+.padding-10 {
+    padding: 10px;
+}
+
 .background-grey {
     background-color: #b4b7b7;
 }
@@ -257,11 +295,11 @@
     border-color: #343434;
 }
 
-.dropdown-item:hover, .dropdown-item:focus {
-    color: #fafaf9;
-    text-decoration: none;
-    background-color: #343434;
-}
+    .dropdown-item:hover, .dropdown-item:focus {
+        color: #fafaf9;
+        text-decoration: none;
+        background-color: #343434;
+    }
 
 .dropdown-divider {
     height: 0;

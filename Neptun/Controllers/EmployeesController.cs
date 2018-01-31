@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
@@ -38,8 +39,17 @@ namespace Neptun.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,LastName,FirstName,Patronymic,Position,PhoneNuber,Email")] Employee employee)
+        public async Task<ActionResult> Create([Bind(Include = "Id,LastName,FirstName,Patronymic,Position,PhoneNuber,Email,Photo")] Employee employee,
+            HttpPostedFileBase uploadPhoto)
         {
+            if (uploadPhoto != null && uploadPhoto.ContentLength > 0)
+            {
+                using (var reader = new BinaryReader(uploadPhoto.InputStream))
+                {
+                    employee.Photo = reader.ReadBytes(uploadPhoto.ContentLength);
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 db.Employees.Add(employee);
@@ -72,8 +82,17 @@ namespace Neptun.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,LastName,FirstName,Patronymic,Position,PhoneNuber,Email")] Employee employee)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,LastName,FirstName,Patronymic,Position,PhoneNuber,Email, Photo")] Employee employee,
+            HttpPostedFileBase uploadPhoto)
         {
+            if (uploadPhoto != null && uploadPhoto.ContentLength > 0)
+            {
+                using (var reader = new BinaryReader(uploadPhoto.InputStream))
+                {
+                    employee.Photo = reader.ReadBytes(uploadPhoto.ContentLength);
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(employee).State = EntityState.Modified;

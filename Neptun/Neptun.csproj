@@ -222,6 +222,10 @@
     <Compile Include="Migrations\201801290122184_FeedbackClassAdded.Designer.cs">
       <DependentUpon>201801290122184_FeedbackClassAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801310114249_EmployeesPhoto.cs" />
+    <Compile Include="Migrations\201801310114249_EmployeesPhoto.Designer.cs">
+      <DependentUpon>201801310114249_EmployeesPhoto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\DTO\ProductIndexDto.cs" />
@@ -380,6 +384,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801290122184_FeedbackClassAdded.resx">
       <DependentUpon>201801290122184_FeedbackClassAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801310114249_EmployeesPhoto.resx">
+      <DependentUpon>201801310114249_EmployeesPhoto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
