@@ -20,5 +20,11 @@ namespace Neptun.Controllers
             var company = await db.Companies.FirstOrDefaultAsync();
             return View(company);
         }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult Admin()
+        {
+            return View();
+        }
     }
 }

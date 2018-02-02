@@ -24,9 +24,6 @@
         <th>
             @Html.DisplayNameFor(model => model.ProductType)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Photo)
-        </th>
         <th></th>
     </tr>
 
@@ -48,10 +45,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProductType)
-            </td>
-            <td class="col-lg-4">
-                @Html.Raw("<img class='img - thumbnail' alt='Cinque Terre' src=\"data:image/jpeg;base64,"
-                               + Convert.ToBase64String(item.Photo) + "\" />")
             </td>
             <td>
                 @Html.ActionLink("Изменить", "Edit", new { id = item.Id })

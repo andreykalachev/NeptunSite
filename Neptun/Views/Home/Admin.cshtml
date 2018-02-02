@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Admin";
+}
+
+<h2>Информация компании</h2>
+<ul>
+    <li>
+        <a href='@Url.Action("AdminInfo", "Company")'>Посмотреть</a>
+    </li>
+    <li>
+        <a href='@Url.Action("Create", "Company")'>Добавить</a>
+    </li>
+</ul>
+
+
+<h2>Продукция</h2>
+<ul>
+    <li>
+        <a href='@Url.Action("AdminInfo", "Productions")'>Посмотреть</a>
+    </li>
+    <li>
+        <a href='@Url.Action("Create", "Productions")'>Добавить</a>
+    </li>
+</ul>
+
+<h2>Новости</h2>
+<ul>
+    <li>
+        <a href='@Url.Action("AdminInfo", "News")'>Посмотреть</a>
+    </li>
+    <li>
+        <a href='@Url.Action("Create", "News")'>Добавить</a>
+    </li>
+</ul>
+
+<h2>Работники</h2>
+<ul>
+    <li>
+        <a href='@Url.Action("Index", "Employees")'>Посмотреть</a>
+    </li>
+    <li>
+        <a href='@Url.Action("Create", "Employees")'>Добавить</a>
+    </li>
+</ul>
+
+<h2>Обратная связь</h2>
+<ul>
+    <li>
+        <a href='@Url.Action("AdminInfo", "FeedBacks")'>Посмотреть</a>
+    </li>
+</ul>
+
