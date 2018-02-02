@@ -2,82 +2,13 @@
 @model Neptun.Models.Production
 
 @{
+    /**/
+
     ViewBag.Title = "Edit";
 }
+<div class="container">
+    <h3>Изменить</h3>
 
-<h3>Изменить</h3>
-
-
-@using (Html.BeginForm(Html.BeginForm("Edit", "Productions", FormMethod.Post, new { enctype = "multipart/form-data" })))
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", id = "summernote" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ButtonDescriptionName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ButtonDescriptionName, new { htmlAttributes = new { @class = "form-control", id = "summernote" } })
-                @Html.ValidationMessageFor(model => model.ButtonDescriptionName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.FullDescriptionPdf, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.HiddenFor(model => model.FullDescriptionPdf)
-                <input type="file" name="uploadPdf" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ProductType, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.ProductType, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ProductType, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.HiddenFor(model => model.Photo)
-                <input type="file" id="Photo" name="uploadPhoto" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Сохранить" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Вернуться к списку", "AdminInfo")
-</div>
-
-<div>
     <meta charset="UTF-8">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
@@ -85,16 +16,85 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
 
+    @using (Html.BeginForm(Html.BeginForm("Edit", "Productions", FormMethod.Post, new { enctype = "multipart/form-data" })))
+    {
+        @Html.AntiForgeryToken()
+
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description)
+            <div>
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", id = "summernote" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.ButtonDescriptionName, htmlAttributes: new { @class = "col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ButtonDescriptionName, new { htmlAttributes = new { @class = "form-control", id = "summernote" } })
+                @Html.ValidationMessageFor(model => model.ButtonDescriptionName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.FullDescriptionPdf, htmlAttributes: new { @class = "col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.FullDescriptionPdf)
+                <input type="file" name="uploadPdf" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.ProductType, htmlAttributes: new { @class = "col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.ProductType, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProductType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.Photo)
+                <input type="file" id="Photo" name="uploadPhoto" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="pl-5 col-md-10">
+                <input type="submit" value="Сохранить" class="btn" />
+            </div>
+        </div>
+
+    }
+
+    <div>
+        @Html.ActionLink("Вернуться к списку", "AdminInfo")
+    </div>
+
     <div id="summernote"></div>
     <script>
         $('#summernote').summernote({
             placeholder: 'Введите описание',
             tabsize: 2,
-            height: 100
+            height: 200
         });
     </script>
-</div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</div>

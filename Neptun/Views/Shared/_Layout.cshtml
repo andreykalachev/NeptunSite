@@ -4,7 +4,7 @@
 <html>
 <head>
     <link href="/content/bootstrap.min.css" rel="stylesheet">
-
+    <link href="/content/Site.css" rel="stylesheet">
     <link href="/content/full-width-pics.css" rel="stylesheet">
     <link href="/content/business-frontpage.css" rel="stylesheet">
     <link href="/content/modern-business.css" rel="stylesheet">
@@ -60,19 +60,20 @@
         </div>
     </nav>
 
-    <div class="container">
+    <div class="renderbody">
         @RenderBody()
     </div>
+    
 
-    <!--
-    <footer class="py-5 bg-dark">
-            <div class="container">
-                <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
-            </div>
-    </footer>
-    -->
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+<footer class="footer">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+    </div>
+</footer>
+
 </body>
 </html>

@@ -3,93 +3,82 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<style>
-    .header {
-        color: #36A0FF;
-        font-size: 27px;
-        padding: 10px;
-    }
-
-    .bigicon {
-        font-size: 35px;
-        color: #36A0FF;
-    }
-</style>
-@using (Html.BeginForm("Index", "FeedBacks", FormMethod.Post))
-{
-@Html.AntiForgeryToken(){
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="well well-sm">
-                <form class="form-horizontal" method="post">
-                    <fieldset>
-                        <legend class="text-center header">Обратная связь</legend>
+    @using (Html.BeginForm("Index", "FeedBacks", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken(){
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="well well-sm">
+                            <form class="form-horizontal" method="post">
+                                <fieldset>
+                                    <legend class="text-center header">Обратная связь</legend>
 
-                        <div class="form-group row">
-                            <span class="col-md-2 text-center"><i class="bigicon"></i></span>
-                            <div class="col-md-8">
-                                @Html.EditorFor(model => Model.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "Имя" } })
-                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <span class="col-md-2   text-center"><i class="bigicon"></i></span>
-                            <div class="col-md-8">
-                                @Html.EditorFor(model => Model.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = "Фамилия" } })
-                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
+                                    <div class="form-group row">
+                                        <span class="col-md-2 text-center"><i class="bigicon"></i></span>
+                                        <div class="col-md-8">
+                                            @Html.EditorFor(model => Model.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "Имя" } })
+                                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <span class="col-md-2   text-center"><i class="bigicon"></i></span>
+                                        <div class="col-md-8">
+                                            @Html.EditorFor(model => Model.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = "Фамилия" } })
+                                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
 
-                        <div class="form-group row">
-                            <span class="col-md-2 text-center"><i class="bigicon"></i></span>
-                            <div class="col-md-8">
-                                @Html.EditorFor(model => Model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })
-                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
+                                    <div class="form-group row">
+                                        <span class="col-md-2 text-center"><i class="bigicon"></i></span>
+                                        <div class="col-md-8">
+                                            @Html.EditorFor(model => Model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })
+                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
 
-                        <div class="form-group row">
-                            <span class="col-md-2 text-center"><i class="bigicon"></i></span>
-                            <div class="col-md-8">
-                                @Html.EditorFor(model => Model.PhoneNuber, new { htmlAttributes = new { @class = "form-control", placeholder = "Телефон (не обязательно)" } })
-                                @Html.ValidationMessageFor(model => model.PhoneNuber, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
+                                    <div class="form-group row">
+                                        <span class="col-md-2 text-center"><i class="bigicon"></i></span>
+                                        <div class="col-md-8">
+                                            @Html.EditorFor(model => Model.PhoneNuber, new { htmlAttributes = new { @class = "form-control", placeholder = "Телефон (не обязательно)" } })
+                                            @Html.ValidationMessageFor(model => model.PhoneNuber, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
 
-                        <div class="form-group row">
-                            <span class="col-md-2 text-center"><i class="bigicon"></i></span>
-                            <div class="col-md-8">
-                                @Html.EditorFor(model => Model.Message, new
-                                {
-                                    htmlAttributes = new
-                                    {
-                                        @class = "form-control",
-                                        type = "TextArea",
-                                        placeholder = "Введите свое сообщение, в ближайшее время мы с вами свяжемся",
-                                        rows = "7"
-                                    }
-                                })
-                                @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
+                                    <div class="form-group row">
+                                        <span class="col-md-2 text-center"><i class="bigicon"></i></span>
+                                        <div class="col-md-8">
+                                            @Html.EditorFor(model => Model.Message, new
+                                            {
+                                                htmlAttributes = new
+                                                {
+                                                    @class = "form-control",
+                                                    type = "TextArea",
+                                                    placeholder = "Введите свое сообщение, в ближайшее время мы с вами свяжемся",
+                                                    rows = "7"
+                                                }
+                                            })
+                                            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
 
-                        <div class="form-group">
-                            <div class="col-md-12 text-center">
-                                <button name="submitButton" type="submit" class="btn btn-primary btn-lg">Отправить</button>
-                            </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12 text-center">
+                                            <button name="submitButton" type="submit" class="btn btn-primary btn-lg">Отправить</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
                         </div>
-                    </fieldset>
-                </form>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+        }
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+
+    }
 </div>
-}
-}
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-
-}

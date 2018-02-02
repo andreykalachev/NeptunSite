@@ -4,25 +4,19 @@
     ViewBag.Title = "Index";
 }
 
+<div class="container">
 
-<h2>Новости</h2>
+    <h1 class="display-2">Новости</h1>
 
-
-@foreach (var item in Model)
-{
-    <div class=" padding-bottom-10">
-        <div class="card background-brown">
-            <div class="card-header">
-                <h3 class="text-left">
-                    @Html.DisplayFor(modelItem => item.Title):  @Html.DisplayFor(modelItem => item.Date)
-                </h3>
-            </div>
-            <div class="card-body">
-                <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+    @foreach (var item in Model)
+    {
+        <hr>
+        <div class="col-md-12">
+            <h1>@item.Title</h1>
+            <p>@item.Description</p>
+            <div>
+                <span class="badge">@Html.DisplayFor(modelItem => item.Date)</span>
             </div>
         </div>
-    </div>
-    
-}
-
-
+    }
+</div>

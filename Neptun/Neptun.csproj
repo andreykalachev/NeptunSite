@@ -257,22 +257,21 @@
     <Content Include="Content\business-frontpage.css" />
     <Content Include="Content\full-width-pics.css" />
     <Content Include="Content\modern-business.css" />
-    <Content Include="Content\round-about.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Pictures\ContactsTitleBackground.jpg" />
-    <Content Include="Pictures\Neptun.jpg" />
     <Content Include="Pictures\Neptun_animat.gif" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Pictures\HomePageTitlePic.jpg" />
-    <Content Include="Pictures\Защита.jpg" />
+    <Content Include="Pictures\TD-foto.jpg" />
+    <Content Include="Pictures\TD-foto2.jpg" />
+    <Content Include="Pictures\вч-защита.jpg" />
+    <Content Include="Pictures\вч-обработка.jpg" />
+    <Content Include="Pictures\вч-связь.jpg" />
     <Content Include="Pictures\ЛЭП.jpg" />
-    <Content Include="Pictures\Обработка.jpg" />
-    <Content Include="Pictures\Опоры.jpg" />
-    <Content Include="Pictures\Связь.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />

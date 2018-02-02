@@ -3,67 +3,69 @@
 @{
     ViewBag.Title = "Delete";
 }
+<div class="container">
+    <h3>Вы уверены что хотите удалить этого работника?</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
 
-<h3>Вы уверены что хотите удалить этого работника?</h3>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Patronymic)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Patronymic)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Patronymic)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Patronymic)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Position)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Position)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Position)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Position)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PhoneNuber)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNuber)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PhoneNuber)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNuber)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+        </dl>
 
-    </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Удалить" class="btn btn-default" /> |
-            @Html.ActionLink("Вернуться к списку", "Index")
-        </div>
-    }
+            <div class="form-actions no-color">
+                <input type="submit" value="Удалить" class="btn btn-default" /> |
+                @Html.ActionLink("Вернуться к списку", "Index")
+            </div>
+        }
+    </div>
 </div>

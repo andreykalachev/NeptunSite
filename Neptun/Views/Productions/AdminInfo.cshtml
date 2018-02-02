@@ -4,54 +4,55 @@
 @{
     ViewBag.Title = "AdminInfo";
 }
+<div class="container">
+    <h3>Продукция</h3>
 
-<h3>Продукция</h3>
-
-<p>
-    @Html.ActionLink("Добавить", "Create")
-</p>
-<p>
-    @Html.ActionLink("К виду пользователя", "Index")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            <text>PDF</text>
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductType)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+    <p>
+        @Html.ActionLink("Добавить", "Create")
+    </p>
+    <p>
+        @Html.ActionLink("К виду пользователя", "Index")
+    </p>
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @if (!string.IsNullOrEmpty(item.ButtonDescriptionName))
-                {
-                    @Html.ActionLink(item.ButtonDescriptionName, "DisplayPdf", new { id = item.Id })
-                }
-                else
-                {
-                    <p>Нету</p>
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductType)
-            </td>
-            <td>
-                @Html.ActionLink("Изменить", "Edit", new { id = item.Id })
-                @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
-                @Html.ActionLink("Описание", "Info", new { id = item.Id })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                <text>PDF</text>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductType)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.ButtonDescriptionName))
+                    {
+                        @Html.ActionLink(item.ButtonDescriptionName, "DisplayPdf", new { id = item.Id })
+                    }
+                    else
+                    {
+                        <p>Нету</p>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductType);
+                </td>
+                <td>
+                    @Html.ActionLink("Изменить", "Edit", new { id = item.Id })
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Описание", "Info", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

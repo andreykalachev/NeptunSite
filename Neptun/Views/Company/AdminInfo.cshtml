@@ -3,46 +3,47 @@
 @{
     ViewBag.Title = "AdminInfo";
 }
+<div class="container">
+    <h3>Компания</h3>
 
-<h3>Компания</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Fax)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Fax)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Fax)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Fax)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-    </dl>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Изменить", "Edit", new { id = Model.Id })
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Изменить", "Edit", new { id = Model.Id })
-</p>

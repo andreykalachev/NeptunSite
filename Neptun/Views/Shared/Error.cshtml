@@ -1,9 +1,55 @@
-﻿@model System.Web.Mvc.HandleErrorInfo
+﻿@using Neptun.Models.Enum
+@model System.Web.Mvc.HandleErrorInfo
 
 @{
     ViewBag.Title = "Error";
 }
+<div class="container">
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">
+        404
+        <small>Страница не найдена</small>
+    </h1>
 
+    <div class="jumbotron">
+        <h1 class="display-1">404</h1>
+        <p>Страница которую вы ищите не найдена, вохможно вы найдене что-то полезное здесь:</p>
+        <ul>
+            <li>
+                <a href='@Url.Action("Index", "Home")'>Главная</a>
+            </li>
+            <li>
+                Продукция
+                <ul>
+                    <li>
+                        <a href='@Url.Action("Index", "Productions")'>Вся продукция</a>
+                    </li>
+                    <li>
+                        <a href='@Url.Action("Index", "Productions", new {productType = ProductType.HfProcessing})'>ВЧ обработка</a>
+                    </li>
+                    <li>
+                        <a href='@Url.Action("Index", "Productions", new {productType = ProductType.HfCommunication})'>ВЧ связь</a>
+                    </li>
+                    <li>
+                        <a href='@Url.Action("Index", "Productions", new {productType = ProductType.HfProtection})'>ВЧ защита</a>
+                    </li>
+                    <li>
+                        <a href='@Url.Action("Index", "Productions", new {productType = ProductType.Other})'>Другое</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href='@Url.Action("Index", "News")'>Новости</a>
+            </li>
+            <li>
+                <a href='@Url.Action("Index", "Company")'>Контакты</a>
+            </li>
+            <li>
+                <a href='@Url.Action("Index", "FeedBacks")'>Обратная связь</a>
+            </li>
+        </ul>
+    </div>
+    <!-- /.jumbotron -->
+
+</div>
