@@ -24,11 +24,10 @@
     <div class="row">
         @foreach (var item in Model.Employees)
         {
-            var path = $@"data:image/jpeg;base64, {Convert.ToBase64String(item.Photo)} ";
             
         <div class="col-lg-25 col-md-4 col-sm-6 text-center mb-5">
             <h5>@Html.DisplayFor(modelItem => item.Position)</h5>
-            <img class="rounded-circle img-fluid d-block mx-auto" height="150" width="150" src="@path" alt="">
+            <img class="rounded-circle img-fluid d-block mx-auto" height="150" width="150" src=@item.Photo alt="">
             <h5>
                 @Html.DisplayFor(modelItem => item.LastName) @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.Patronymic)
             </h5>

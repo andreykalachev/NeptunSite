@@ -9,7 +9,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Neptun.Models;
+using Neptun.Models.ViewModels;
 using Neptun.Persistence;
+using Neptun.Servises;
 
 namespace Neptun.Controllers
 {
@@ -39,25 +41,18 @@ namespace Neptun.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,LastName,FirstName,Patronymic,Position,PhoneNuber,Email,Photo")] Employee employee,
-            HttpPostedFileBase uploadPhoto)
+        public async Task<ActionResult> Create([Bind(Include = "Id,LastName,FirstName,Patronymic,Position,PhoneNuber,Email,Photo, HttpPostedFilePhoto")] EmployeeCreateEditViewModel employeeViewModel)
         {
-            if (uploadPhoto != null && uploadPhoto.ContentLength > 0)
-            {
-                using (var reader = new BinaryReader(uploadPhoto.InputStream))
-                {
-                    employee.Photo = reader.ReadBytes(uploadPhoto.ContentLength);
-                }
-            }
-
             if (ModelState.IsValid)
             {
+                var employee = employeeViewModel;
+                employee.Photo = FilesOperations.SaveImg(employeeViewModel.HttpPostedFilePhoto);
                 db.Employees.Add(employee);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(employee);
+            return View(employeeViewModel);
         }
 
         // GET: Employees/Edit/5
@@ -73,7 +68,7 @@ namespace Neptun.Controllers
             {
                 return HttpNotFound();
             }
-            return View(employee);
+            return View((EmployeeCreateEditViewModel)employee);
         }
 
         // POST: Employees/Edit/5
@@ -82,24 +77,23 @@ namespace Neptun.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,LastName,FirstName,Patronymic,Position,PhoneNuber,Email, Photo")] Employee employee,
-            HttpPostedFileBase uploadPhoto)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,LastName,FirstName,Patronymic,Position,PhoneNuber,Email,Photo, HttpPostedFilePhoto")] EmployeeCreateEditViewModel employeeViewModel)
         {
-            if (uploadPhoto != null && uploadPhoto.ContentLength > 0)
-            {
-                using (var reader = new BinaryReader(uploadPhoto.InputStream))
-                {
-                    employee.Photo = reader.ReadBytes(uploadPhoto.ContentLength);
-                }
-            }
-
             if (ModelState.IsValid)
             {
+                Employee employee = employeeViewModel;
+                if (employeeViewModel.HttpPostedFilePhoto != null &&
+                    employeeViewModel.HttpPostedFilePhoto.ContentLength > 0)
+                {
+                    FilesOperations.DeleteFile(employee.Photo);
+                    employee.Photo = FilesOperations.SaveImg(employeeViewModel.HttpPostedFilePhoto);
+                }
                 db.Entry(employee).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(employee);
+
+            return View(employeeViewModel);
         }
 
         // GET: Employees/Delete/5
@@ -125,6 +119,7 @@ namespace Neptun.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Employee employee = await db.Employees.FindAsync(id);
+            FilesOperations.DeleteFile(employee.Photo);
             db.Employees.Remove(employee);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Neptun.Models
+namespace Neptun.Models.ViewModels
 {
-    public class Employee
+    public class EmployeeCreateEditViewModel
     {
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
@@ -38,7 +38,41 @@ namespace Neptun.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
 
+        [HiddenInput(DisplayValue = false)]
         [Display(Name = "Фото")]
         public string Photo { get; set; }
-    }
+
+        public HttpPostedFileBase HttpPostedFilePhoto { get; set; }
+
+        public static implicit operator Employee(EmployeeCreateEditViewModel employeeViewModel)
+        {
+            return new Employee
+            {
+                Email = employeeViewModel.Email,
+                FirstName = employeeViewModel.FirstName,
+                Id = employeeViewModel.Id,
+                LastName = employeeViewModel.LastName,
+                Patronymic = employeeViewModel.Patronymic,
+                PhoneNuber = employeeViewModel.PhoneNuber,
+                Photo = employeeViewModel.Photo,
+                Position = employeeViewModel.Position
+            };
+        }
+
+        public static implicit operator EmployeeCreateEditViewModel(Employee employee)
+        {
+            return new EmployeeCreateEditViewModel
+            {
+                Email = employee.Email,
+                FirstName = employee.FirstName,
+                Id = employee.Id,
+                LastName = employee.LastName,
+                Patronymic = employee.Patronymic,
+                PhoneNuber = employee.PhoneNuber,
+                Photo = employee.Photo,
+                Position = employee.Position,
+                HttpPostedFilePhoto = null
+            };
+        }
+    } 
 }
