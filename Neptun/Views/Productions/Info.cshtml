@@ -9,7 +9,7 @@
             @Html.DisplayFor(model => model.Title)
             @if (!string.IsNullOrEmpty(Model.ButtonDescriptionName))
             {
-                <button class="btn btn-info" onclick="location.href = '@Url.Action("DisplayPdf", "Productions", new {id = Model.Id})'">@Html.DisplayFor(modelItem => Model.ButtonDescriptionName) </button>
+                <input type="button" class="btn btn-info" onClick="window.open('@Url.Action("DisplayPdf", "Productions", new {id = Model.Id})', target='_blank')"   value='@Html.DisplayFor(modelItem => Model.ButtonDescriptionName)'/>
             }
         </h3>
         <hr />

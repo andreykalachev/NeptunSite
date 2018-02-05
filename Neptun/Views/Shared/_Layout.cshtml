@@ -17,7 +17,7 @@
 
 </head>
 <body>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark fixed-top">
         <div class="container">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -37,6 +37,9 @@
                             <a class="dropdown-item" href='@Url.Action("Index", "Productions", new {productType = ProductType.HfProcessing})'>ВЧ Обработка</a>
                             <a class="dropdown-item" href='@Url.Action("Index", "Productions", new {productType = ProductType.HfCommunication})'>ВЧ Связь</a>
                             <a class="dropdown-item" href='@Url.Action("Index", "Productions", new {productType = ProductType.HfProtection})'>ВЧ Защита</a>
+                            <a class="dropdown-item" href='@Url.Action("Сabinets", "Productions")'>Шкафы</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href='@Url.Action("TreatmentFacilities", "Productions")'>Очистные сооружения</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href='@Url.Action("Index", "Productions", new {productType = ProductType.Other})'>Прочее</a>
                         </div>
@@ -71,7 +74,7 @@
 
 <footer class="footer">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+        <p class="m-2 text-center text-white">Все права на торговую марку принадлежат ООО "Торговый дом Одесского завода "Нептун"</p>
     </div>
 </footer>
 

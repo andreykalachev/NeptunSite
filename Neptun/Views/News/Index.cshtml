@@ -6,13 +6,13 @@
 
 <div class="container">
 
-    <h1 class="display-2">Новости</h1>
+    <h2 class="display-4 mt-5">Новости</h2>
 
     @foreach (var item in Model)
     {
         <hr>
         <div class="col-md-12">
-            <h1>@item.Title</h1>
+            <h2>@item.Title</h2>
             <p>@item.Description</p>
             <div>
                 <span class="badge">@Html.DisplayFor(modelItem => item.Date)</span>

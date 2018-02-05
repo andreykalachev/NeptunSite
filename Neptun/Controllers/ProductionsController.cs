@@ -66,7 +66,24 @@ namespace Neptun.Controllers
 
             view.Products = await query.OrderBy(x => x.Id).Skip(currentPageIndex * itemsPerPage).Take(itemsPerPage).ToListAsync();
 
+            if (view.Products == null || view.Products.Count == 0) return Redirect("/Productions/EmptyProductionPage");
+
             return View(view);
+        }
+
+        public ActionResult EmptyProductionPage()
+        {
+            return View();
+        }
+
+        public ActionResult Сabinets()
+        {
+            return View();
+        }
+
+        public ActionResult TreatmentFacilities()
+        {
+            return View();
         }
 
         [Authorize(Roles = "Admin")]

@@ -9,7 +9,7 @@
 <div class="container">
     <h3>Изменить</h3>
 
-    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
@@ -88,10 +88,11 @@
     <div id="summernote"></div>
     <script>
         $('#summernote').summernote({
-            placeholder: 'Введите описание',
+            placeholder: 'Введите описание продукции',
             tabsize: 2,
-            height: 200
+            height: 100
         });
+        $('.dropdown-toggle').dropdown();
     </script>
 
     @section Scripts {

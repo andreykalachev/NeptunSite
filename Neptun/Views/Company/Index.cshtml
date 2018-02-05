@@ -4,66 +4,62 @@
     ViewBag.Title = "Index";
 }
 
-    <header class="py-2 bg-image-full" style="background-image: url('/Pictures/ContactsTitleBackground.jpg');">
-        <div class="col-md-4 card-body">
-            <div class="card-header bg-light">
-                <h3>Контакты</h3>
-                <h5>@Html.DisplayNameFor(model => model.Company.Fax): @Html.DisplayFor(model => model.Company.Fax)</h5>
-                <h5>@Html.DisplayNameFor(model => model.Company.PhoneNumber): @Html.DisplayFor(model => model.Company.PhoneNumber)</h5>
-                <h5>@Html.DisplayNameFor(model => model.Company.Email): @Html.DisplayFor(model => model.Company.Email)</h5>
-                <h5>@Html.DisplayNameFor(model => model.Company.Address): @Html.DisplayFor(model => model.Company.Address)</h5>
-            </div>
+<header class="py-2 bg-image-full" style="background-image: url('/Pictures/ContactsTitle.jpg');">
+    <div class="col-md-4 card-body">
+        <div class="card-header bg-color-blue">
+            <h3>Контакты</h3>
+            <h5>@Html.DisplayNameFor(model => model.Company.Fax): @Html.DisplayFor(model => model.Company.Fax)</h5>
+            <h5>@Html.DisplayNameFor(model => model.Company.PhoneNumber): @Html.DisplayFor(model => model.Company.PhoneNumber)</h5>
+            <h5>@Html.DisplayNameFor(model => model.Company.Email): @Html.DisplayFor(model => model.Company.Email)</h5>
+            <h5>@Html.DisplayNameFor(model => model.Company.Address): @Html.DisplayFor(model => model.Company.Address)</h5>
         </div>
-    </header>
-    <section class="py-3">
-        <div class="container text-center">
-            <h3>ООО "Торговый дом Одесского завода "Нептун"</h3>
-        </div>
-    </section>
-    <div class="container">
-        <div class="row">
-            @foreach (var item in Model.Employees)
-            {
-                var path = $@"data:image/jpeg;base64, {Convert.ToBase64String(item.Photo)} ";
-
-                <div class="col-lg-3 col-md-4 col-sm-6 text-center mb-4">
-                    <img class="rounded-circle img-fluid d-block mx-auto" height="200" width="200" src="@path" alt="">
-                    <h4>
-                        @Html.DisplayFor(modelItem => item.LastName) @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.Patronymic)
-                    </h4>
-                    <h5>@Html.DisplayFor(modelItem => item.Position)</h5>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <strong>@Html.DisplayNameFor(modelItem => item.PhoneNuber):</strong>
-                            <span>@Html.DisplayFor(modelItem => item.PhoneNuber)</span>
-                        </li>
-                        <li class="list-group-item">
-                            <strong>@Html.DisplayNameFor(modelItem => item.Email):</strong>
-                            <span>@Html.DisplayFor(modelItem => item.Email)</span>
-                        </li>
-                    </ul>
-                </div>
-
-            }
-        </div>
-        <div class="pb-5">
-            <h3>Ищите нас на карте!</h3>
-            <div id="map"></div>
-        </div>
-        <script>
-            function initMap() {
-                var uluru = { lat: 46.484875, lng: 30.664947 };
-                var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 13,
-                    center: uluru
-                });
-                var marker = new google.maps.Marker({
-                    position: uluru,
-                    map: map
-                });
-            }
-        </script>
-        <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRBMFTA3uiUZiFGZEqCTzVfZ_H6-RaSpQ&callback=initMap">
-        </script>
     </div>
+</header>
+<section class="py-3">
+    <div class="container text-center">
+        <h3>ООО "Торговый дом Одесского завода "Нептун"</h3>
+    </div>
+</section>
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model.Employees)
+        {
+            var path = $@"data:image/jpeg;base64, {Convert.ToBase64String(item.Photo)} ";
+            
+        <div class="col-lg-25 col-md-4 col-sm-6 text-center mb-5">
+            <h5>@Html.DisplayFor(modelItem => item.Position)</h5>
+            <img class="rounded-circle img-fluid d-block mx-auto" height="150" width="150" src="@path" alt="">
+            <h5>
+                @Html.DisplayFor(modelItem => item.LastName) @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.Patronymic)
+            </h5>
+
+
+            <h6>@Html.DisplayFor(modelItem => item.PhoneNuber)</h6>
+
+            <h6>@Html.DisplayFor(modelItem => item.Email)</h6>
+
+        </div>
+
+        }
+    </div>
+    <div class="pb-5">
+        <h3>Ищите нас на карте!</h3>
+        <div id="map"></div>
+    </div>
+    <script>
+        function initMap() {
+            var uluru = { lat: 46.526997, lng: 30.654249 };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 13,
+                center: uluru
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRBMFTA3uiUZiFGZEqCTzVfZ_H6-RaSpQ&callback=initMap">
+    </script>
+</div>
