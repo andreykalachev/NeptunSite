@@ -9,10 +9,10 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Neptun.Models;
-using Neptun.Models.DTO;
 using Neptun.Models.Enum;
-using Neptun.Models.ViewModels.Product;
+using Neptun.Models.ViewModels;
 using Neptun.Persistence;
+using Neptun.Servises;
 
 namespace Neptun.Controllers
 {
@@ -23,45 +23,23 @@ namespace Neptun.Controllers
         // GET: Productions
         public async Task<ActionResult> Index(int? page, ProductType? productType)
         {
-            const int itemsPerPage = 9; 
+            const int itemsPerPage = 9;
             var currentPageIndex = page ?? 0;
             var pageCount = (int)Math.Ceiling((double)db.Productions.Count() / itemsPerPage);
+
             if (currentPageIndex < 0 || currentPageIndex >= pageCount)
             {
                 return HttpNotFound();
             }
 
-            var view = new ProductIndexViewModel
-            {
-                CurrentPage = currentPageIndex,
-                PageCount = pageCount,
-                ProductType = productType
-            };
+            var view = new ProductIndexViewModel(currentPageIndex, pageCount, productType);
 
-            IQueryable<ProductIndexDto> query;
+
+            IQueryable<Production> query = db.Productions;
 
             if (productType != null)
             {
-                query = db.Productions.Where(x => x.ProductType == productType).Select(x =>
-                    new ProductIndexDto
-                    {
-                        Id = x.Id,
-                        Title = x.Title,
-                        ProductType = x.ProductType,
-                        Photo = x.Photo
-                    });
-            }
-            else
-            {
-                query = db.Productions.Select(x =>
-                    new ProductIndexDto
-                    {
-                        Id = x.Id,
-                        Title = x.Title,
-                        ProductType = x.ProductType,
-                        Photo = x.Photo
-                    });
-
+                query = db.Productions.Where(x => x.ProductType == productType);
             }
 
             view.Products = await query.OrderBy(x => x.Id).Skip(currentPageIndex * itemsPerPage).Take(itemsPerPage).ToListAsync();
@@ -89,14 +67,7 @@ namespace Neptun.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult> AdminInfo()
         {
-            return View(await db.Productions.Select(x => new ProductAdminViewModel
-            {
-                Id = x.Id,
-                Title = x.Title,
-                ProductType = x.ProductType,
-                Photo = x.Photo,
-                ButtonDescriptionName = x.ButtonDescriptionName
-            }).ToListAsync());
+            return View(await db.Productions.ToListAsync());
         }
 
         public async Task<ActionResult> Info(int? id)
@@ -106,21 +77,13 @@ namespace Neptun.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Production production = await db.Productions.FindAsync(id);
+            var production = await db.Productions.FindAsync(id);
             if (production == null)
             {
                 return HttpNotFound();
             }
 
-            var productionView = new ProductInfoViewModel
-            {
-                Id = production.Id,
-                Title = production.Title,
-                Description = production.Description,
-                Photo = production.Photo,
-                ButtonDescriptionName = production.ButtonDescriptionName
-            };
-            return View(productionView);
+            return View(production);
 
         }
 
@@ -133,16 +96,17 @@ namespace Neptun.Controllers
             }
 
             Production production = db.Productions.Find(id);
-            if (production == null || string.IsNullOrEmpty(production.ButtonDescriptionName) || production.FullDescriptionPdf.Length == 0)
+            if (string.IsNullOrEmpty(production?.ButtonDescriptionName) || production.FullDescriptionPdf.Length == 0)
             {
                 return HttpNotFound();
             }
+            var pdfPath = System.Web.HttpContext.Current.Server.MapPath(production.FullDescriptionPdf);
 
-            var byteArray = production.FullDescriptionPdf;
-            MemoryStream pdfStream = new MemoryStream();
-            pdfStream.Write(byteArray, 0, byteArray.Length);
-            pdfStream.Position = 0;
-            return new FileStreamResult(pdfStream, "application/pdf");
+            if (System.IO.File.Exists(pdfPath)) HttpNotFound();
+
+            var fileContents = System.IO.File.ReadAllBytes(pdfPath);
+
+            return new FileContentResult(fileContents, "application/pdf");
         }
 
         // GET: Productions/Create
@@ -159,38 +123,22 @@ namespace Neptun.Controllers
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(
-            [Bind(Include = "Id,Title,Description,FullDescriptionPdf,ButtonDescriptionName,ProductType,Photo")]
-            Production production, HttpPostedFileBase uploadPhoto, HttpPostedFileBase uploadPdf)
+            [Bind(Include = "Id,Title,Description,FullDescriptionPdf,ButtonDescriptionName,ProductType,Photo, HttpPostedFilePhoto, HttpPostedFilePdf")]
+            ProductionCreateEditViewModel productionViewModel)
         {
             if (ModelState.IsValid)
             {
-                if (uploadPhoto != null && uploadPhoto.ContentLength > 0)
-                {
-                    using (var reader = new BinaryReader(uploadPhoto.InputStream))
-                    {
-                        production.Photo = reader.ReadBytes(uploadPhoto.ContentLength);
-                    }
-                }
-
+                Production production = productionViewModel;
+                production.Photo = FilesOperations.SaveImg(productionViewModel.HttpPostedFilePhoto);
                 if (!string.IsNullOrEmpty(production.ButtonDescriptionName))
-                {
-                    if (uploadPdf != null && uploadPdf.ContentLength > 0)
-                    {
-                        using (var reader = new BinaryReader(uploadPdf.InputStream))
-                        {
-                            production.FullDescriptionPdf = reader.ReadBytes(uploadPdf.ContentLength);
-                        }
-                    }
-                    else production.ButtonDescriptionName = string.Empty;
-                }
-                else production.FullDescriptionPdf = new byte[0];
+                    production.FullDescriptionPdf = FilesOperations.SavePdf(productionViewModel.HttpPostedFilePdf);
 
                 db.Productions.Add(production);
                 await db.SaveChangesAsync();
                 return RedirectToAction("AdminInfo");
             }
 
-            return View(production);
+            return View(productionViewModel);
         }
 
         // GET: Productions/Edit/5
@@ -208,7 +156,7 @@ namespace Neptun.Controllers
                 return HttpNotFound();
             }
 
-            return View(production);
+            return View((ProductionCreateEditViewModel)production);
         }
 
         // POST: Productions/Edit/5
@@ -218,37 +166,36 @@ namespace Neptun.Controllers
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(
-            [Bind(Include = "Id,Title,Description,FullDescriptionPdf,ButtonDescriptionName,ProductType,Photo")]
-            Production production, HttpPostedFileBase uploadPhoto, HttpPostedFileBase uploadPdf)
+            [Bind(Include = "Id,Title,Description,FullDescriptionPdf,ButtonDescriptionName,ProductType,Photo, HttpPostedFilePhoto, HttpPostedFilePdf")]
+            ProductionCreateEditViewModel productionViewModel)
         {
             if (ModelState.IsValid)
             {
-                if (uploadPhoto != null && uploadPhoto.ContentLength > 0)
+                Production production = productionViewModel;
+
+                if (productionViewModel.HttpPostedFilePhoto != null && productionViewModel.HttpPostedFilePhoto.ContentLength > 0)
                 {
-                    using (var reader = new BinaryReader(uploadPhoto.InputStream))
+                    FilesOperations.DeleteFile(production.Photo);
+                    production.Photo = FilesOperations.SaveImg(productionViewModel.HttpPostedFilePhoto);
+                }
+
+
+                if (!string.IsNullOrEmpty(productionViewModel.ButtonDescriptionName))
+                {
+                    if (productionViewModel.HttpPostedFilePdf != null && productionViewModel.HttpPostedFilePdf.ContentLength > 0)
                     {
-                        production.Photo = reader.ReadBytes(uploadPhoto.ContentLength);
+                        FilesOperations.DeleteFile(production.FullDescriptionPdf);
+                        production.FullDescriptionPdf = FilesOperations.SavePdf(productionViewModel.HttpPostedFilePdf);
                     }
                 }
-                if (!string.IsNullOrEmpty(production.ButtonDescriptionName))
-                {
-                    if (uploadPdf != null && uploadPdf.ContentLength > 0)
-                    {
-                        using (var reader = new BinaryReader(uploadPdf.InputStream))
-                        {
-                            production.FullDescriptionPdf = reader.ReadBytes(uploadPdf.ContentLength);
-                        }
-                    }
-                    else if(production.FullDescriptionPdf?.Length == 0) production.ButtonDescriptionName = string.Empty;
-                }
-                else production.FullDescriptionPdf = new byte[0];
+                else FilesOperations.DeleteFile(production.FullDescriptionPdf);
 
                 db.Entry(production).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("AdminInfo");
             }
 
-            return View(production);
+            return View(productionViewModel);
         }
 
         // GET: Productions/Delete/5
@@ -260,13 +207,7 @@ namespace Neptun.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var production = await db.Productions.Where(x => x.Id == id).Select(x => new ProductDeleteViewModel
-            {
-                Id = x.Id,
-                Title = x.Title,
-                Description = x.Description,
-                ProductType = x.ProductType,
-            }).FirstAsync();
+            var production = await db.Productions.FindAsync(id);
             if (production == null)
             {
                 return HttpNotFound();
@@ -281,10 +222,12 @@ namespace Neptun.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Production production = await db.Productions.FindAsync(id);
+            var production = await db.Productions.FindAsync(id);
+            FilesOperations.DeleteFile(production.Photo);
+            FilesOperations.DeleteFile(production.FullDescriptionPdf);
             db.Productions.Remove(production);
             await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("AdminInfo");
         }
 
         protected override void Dispose(bool disposing)

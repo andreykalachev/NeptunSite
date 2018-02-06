@@ -1,5 +1,5 @@
 ﻿@using System.ComponentModel
-@model Neptun.Models.Production
+@model Neptun.Models.ViewModels.ProductionCreateEditViewModel
 
 @{
     /**/
@@ -53,7 +53,8 @@
             @Html.LabelFor(model => model.FullDescriptionPdf, htmlAttributes: new { @class = "col-md-2" })
             <div class="col-md-10">
                 @Html.HiddenFor(model => model.FullDescriptionPdf)
-                <input type="file" name="uploadPdf" />
+                <p>(pdf) </p>
+                @Html.TextBoxFor(model => model.HttpPostedFilePdf, new { type = "file", value = "pdf" })
             </div>
         </div>
 
@@ -69,7 +70,8 @@
             @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "col-md-2" })
             <div class="col-md-10">
                 @Html.HiddenFor(model => model.Photo)
-                <input type="file" id="Photo" name="uploadPhoto" />
+                <p>(jpg, jpeg, png, gif) </p>
+                @Html.TextBoxFor(model => model.HttpPostedFilePhoto, new { type = "file", value = "photo" })
             </div>
         </div>
 

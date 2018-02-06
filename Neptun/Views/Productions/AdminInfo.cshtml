@@ -1,5 +1,4 @@
-﻿@using System.Diagnostics.Eventing.Reader
-@model IEnumerable<Neptun.Models.ViewModels.Product.ProductAdminViewModel>
+﻿@model IEnumerable<Neptun.Models.Production>
 
 @{
     ViewBag.Title = "AdminInfo";
@@ -36,7 +35,7 @@
                 <td>
                     @if (!string.IsNullOrEmpty(item.ButtonDescriptionName))
                     {
-                        @Html.ActionLink(item.ButtonDescriptionName, "DisplayPdf", new { id = item.Id })
+                    <a href='@Url.Action("DisplayPdf", "Productions", new {id = item.Id})' Onclick="window.open('@Url.Action("DisplayPdf", "Productions", new {id = item.Id})', target='_blank')">@Html.DisplayFor(modelItem => item.ButtonDescriptionName)</a>
                     }
                     else
                     {

@@ -61,8 +61,11 @@ namespace Neptun.Persistence
             modelBuilder.Entity<Production>().HasKey(x => x.Id);
             modelBuilder.Entity<Production>().Property(x => x.Title).HasMaxLength(300);
             modelBuilder.Entity<Production>().Property(x => x.Description).HasMaxLength(50000);
+            modelBuilder.Entity<Production>().Property(x => x.FullDescriptionPdf).HasMaxLength(200);
             modelBuilder.Entity<Production>().Property(x => x.FullDescriptionPdf).IsOptional();
             modelBuilder.Entity<Production>().Property(x => x.ButtonDescriptionName).IsOptional();
+            modelBuilder.Entity<Production>().Property(x => x.Photo).HasMaxLength(200);
+            modelBuilder.Entity<Production>().Property(x => x.Photo).IsOptional();
 
             #endregion
         }

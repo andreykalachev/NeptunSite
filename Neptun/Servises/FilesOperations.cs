@@ -62,7 +62,7 @@ namespace Neptun.Servises
 
         public static bool IsFilePicture(string fileExtention)
         {
-            var supportedTypes = new[] { ".jpg", ".jpeg", ".png" };
+            var supportedTypes = new[] { ".jpg", ".jpeg", ".png", ".gif" };
 
             return supportedTypes.Contains(fileExtention);
         }

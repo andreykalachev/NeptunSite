@@ -1,4 +1,4 @@
-﻿@model Neptun.Models.ViewModels.Product.ProductIndexViewModel
+﻿@model Neptun.Models.ViewModels.ProductIndexViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -25,9 +25,8 @@
                             <a href=@Url.Action("Info", "Productions", new {id = item.Id})>@Html.DisplayFor(modelItem => item.Title)</a>
                         </h5>
                     </div>
-                    @{ var path = $@"data:image/jpeg;base64, {Convert.ToBase64String(item.Photo)} ";}
                     <a href=@Url.Action("Info", "Productions", new {id = item.Id})>
-                        <img class="card-img-top" src="@path" alt="">
+                        <img class="card-img-top" src="@item.Photo" alt="">
                     </a>
                 </div>
             </div>

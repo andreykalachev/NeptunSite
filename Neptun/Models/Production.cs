@@ -26,7 +26,7 @@ namespace Neptun.Models
         public string Description { get; set; }
 
         [Display(Name = "Полное описание в PDF")]
-        public byte[] FullDescriptionPdf { get; set; }
+        public string FullDescriptionPdf { get; set; }
 
         [Display(Name = "Название кнопки для описания")]
         public string ButtonDescriptionName { get; set; }
@@ -36,6 +36,6 @@ namespace Neptun.Models
         public ProductType ProductType { get; set; }
 
         [Display(Name = "Фото")]
-        public byte[] Photo { get; set; }
+        public string Photo { get; set; }
     }
 }

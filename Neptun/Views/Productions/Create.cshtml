@@ -1,4 +1,4 @@
-﻿@model Neptun.Models.Production
+﻿@model Neptun.Models.ViewModels.ProductionCreateEditViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -48,7 +48,8 @@
         <div class="form-group row">
             @Html.LabelFor(model => model.FullDescriptionPdf, htmlAttributes: new { @class = "col-md-2" })
             <div class="col-md-10">
-                <input type="file" name="uploadPdf" />
+                <p>(pdf) </p>
+                @Html.TextBoxFor(model => model.HttpPostedFilePdf, new { type = "file", value = "test" })
             </div>
         </div>
 
@@ -63,7 +64,8 @@
         <div class="form-group row">
             @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "col-md-2" })
             <div class="col-md-10">
-                <input type="file" name="uploadPhoto" />
+                <p>(jpg, jpeg, png, gif) </p>
+                @Html.TextBoxFor(model => model.HttpPostedFilePhoto, new { type = "file", value = "test" })
             </div>
         </div>
 

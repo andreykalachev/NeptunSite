@@ -1,4 +1,4 @@
-﻿@model Neptun.Models.ViewModels.Product.ProductDeleteViewModel
+﻿@model Neptun.Models.Production
 
 @{
     ViewBag.Title = "Delete";
@@ -39,8 +39,8 @@
         {
             @Html.AntiForgeryToken()
 
-            <div class="form-actions no-color">
-                <input type="submit" value="Удалить" class="btn btn-default" /> |
+            <div class="mt-1">
+                <input type="submit" value="Удалить" class="btn" /> |
                 @Html.ActionLink("Вернуться к списку", "AdminInfo")
             </div>
         }

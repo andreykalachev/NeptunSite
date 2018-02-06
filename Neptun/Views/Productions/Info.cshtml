@@ -1,4 +1,4 @@
-﻿@model Neptun.Models.ViewModels.Product.ProductInfoViewModel
+﻿@model Neptun.Models.Production
 
 @{
     ViewBag.Title = "Info";
@@ -15,8 +15,7 @@
         <hr />
     </div>
     <div class="col-lg-5 float-lg-left">
-        @{ var path = $@"data:image/jpeg;base64, {Convert.ToBase64String(Model.Photo)} ";}
-        <img class="card-img-top" src="@path" alt="">
+        <img class="card-img-top" src="@Model.Photo" alt="">
     </div>
     <div class="pl-4">
         @Html.Raw(Model.Description)

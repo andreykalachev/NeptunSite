@@ -65,7 +65,8 @@
             <div class="form-group row">
                 @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.HttpPostedFilePhoto, new { type = "file", value = "test" })
+                    <p>(jpg, jpeg, png, gif) </p>
+                    @Html.TextBoxFor(model => model.HttpPostedFilePhoto, new {type = "file", value = "test"})
                 </div>
             </div>
 
