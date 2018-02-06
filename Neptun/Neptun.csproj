@@ -234,6 +234,10 @@
     <Compile Include="Migrations\201802052258102_EmployeePhotoLengthIncreased.Designer.cs">
       <DependentUpon>201802052258102_EmployeePhotoLengthIncreased.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802060059195_EmployeePhotoIsOptional.cs" />
+    <Compile Include="Migrations\201802060059195_EmployeePhotoIsOptional.Designer.cs">
+      <DependentUpon>201802060059195_EmployeePhotoIsOptional.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\DTO\ProductIndexDto.cs" />
@@ -280,7 +284,7 @@
     <Content Include="Pictures\TD-foto2.jpg" />
     <Content Include="Pictures\вч связь.jpg" />
     <Content Include="Pictures\вч-защита.jpg" />
-    <Content Include="Pictures\ВЧ-обработка.jpg" />
+    <Content Include="Pictures\ВЧ обработка.jpg" />
     <Content Include="Pictures\ЛЭП.jpg" />
     <Content Include="Pictures\очистные-сооружения.jpg" />
     <Content Include="Pictures\шкафы.jpg" />
@@ -435,6 +439,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802052258102_EmployeePhotoLengthIncreased.resx">
       <DependentUpon>201802052258102_EmployeePhotoLengthIncreased.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802060059195_EmployeePhotoIsOptional.resx">
+      <DependentUpon>201802060059195_EmployeePhotoIsOptional.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

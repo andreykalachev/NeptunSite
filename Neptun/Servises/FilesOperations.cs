@@ -54,7 +54,7 @@ namespace Neptun.Servises
         {
             if (!string.IsNullOrEmpty(fileName))
             {
-                var fileToDelete = fileName.Substring(1);
+                var fileToDelete = fileName;
                 var saveDirectory = HttpContext.Current.Server.MapPath(fileToDelete);
                 if (File.Exists(saveDirectory)) File.Delete(saveDirectory);
             }
@@ -81,7 +81,7 @@ namespace Neptun.Servises
             var saveDirectory = HttpContext.Current.Server.MapPath(localDirectory);
             var savePath = Path.Combine(saveDirectory, newFileName);
             file.SaveAs(savePath);
-            return Path.Combine(localDirectory.Replace('~', '.'), newFileName);
+            return Path.Combine(localDirectory.Substring(1), newFileName);
         }
 
         public static string ChangeFileName(string fileName)

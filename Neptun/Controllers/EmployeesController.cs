@@ -45,7 +45,7 @@ namespace Neptun.Controllers
         {
             if (ModelState.IsValid)
             {
-                var employee = employeeViewModel;
+                Employee employee = employeeViewModel;
                 employee.Photo = FilesOperations.SaveImg(employeeViewModel.HttpPostedFilePhoto);
                 db.Employees.Add(employee);
                 await db.SaveChangesAsync();

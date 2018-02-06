@@ -43,6 +43,7 @@ namespace Neptun.Persistence
             #region Employee
 
             modelBuilder.Entity<Employee>().HasKey(x => x.Id);
+            modelBuilder.Entity<Employee>().Property(x => x.Photo).IsOptional();
             modelBuilder.Entity<Employee>().Property(x => x.Photo).HasMaxLength(200);
 
             #endregion
