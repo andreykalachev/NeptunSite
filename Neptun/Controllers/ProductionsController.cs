@@ -109,6 +109,17 @@ namespace Neptun.Controllers
             return new FileContentResult(fileContents, "application/pdf");
         }
 
+        public ActionResult DisplayPdfFromFile(string path)
+        {
+            var pdfPath = System.Web.HttpContext.Current.Server.MapPath(path);
+
+            if (System.IO.File.Exists(pdfPath)) HttpNotFound();
+
+            var fileContents = System.IO.File.ReadAllBytes(pdfPath);
+
+            return new FileContentResult(fileContents, "application/pdf");
+        }
+
         // GET: Productions/Create
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
