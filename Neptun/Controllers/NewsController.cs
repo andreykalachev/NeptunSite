@@ -19,13 +19,15 @@ namespace Neptun.Controllers
         // GET: News
         public async Task<ActionResult> Index()
         {
-            return View(await db.News.ToListAsync());
+            var news = await db.News.ToListAsync();
+            return View(news.OrderByDescending(x => x.Date));
         }
 
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult> AdminInfo()
         {
-            return View(await db.News.ToListAsync());
+            var news = await db.News.ToListAsync();
+            return View(news.OrderByDescending(x => x.Date));
         }
 
         // GET: News/Details/5

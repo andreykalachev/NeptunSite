@@ -23,28 +23,36 @@ namespace Neptun.Controllers
         // GET: Productions
         public async Task<ActionResult> Index(int? page, ProductType? productType)
         {
-            const int itemsPerPage = 9;
+            const int itemsPerPage = 12;
             var currentPageIndex = page ?? 0;
-            var pageCount = (int)Math.Ceiling((double)db.Productions.Count() / itemsPerPage);
+            var pageCount = productType == null ? db.Productions.Count() : db.Productions.Count(x => x.ProductType == productType);
+            pageCount = (int) Math.Ceiling((double) pageCount / itemsPerPage);
+
+            if (pageCount == 0) return Redirect("/Productions/EmptyProductionPage");
 
             if (currentPageIndex < 0 || currentPageIndex >= pageCount)
             {
                 return HttpNotFound();
             }
 
-            var view = new ProductIndexViewModel(currentPageIndex, pageCount, productType);
+            var view = new ProductIndexViewModel(pageCount, currentPageIndex, productType);
 
-
-            IQueryable<Production> query = db.Productions;
+            var query = db.Productions.OrderBy(x => x.Id).Select(x => new ProductionListViewModel
+            {
+                Id = x.Id,
+                Title = x.Title,
+                FullDescriptionPdf = x.FullDescriptionPdf,
+                Photo = x.Photo,
+                ButtonDescriptionName = x.ButtonDescriptionName,
+                ProductType = x.ProductType
+            });
 
             if (productType != null)
             {
-                query = db.Productions.Where(x => x.ProductType == productType);
+                query = query.Where(x => x.ProductType == productType);
             }
 
-            view.Products = await query.OrderBy(x => x.Id).Skip(currentPageIndex * itemsPerPage).Take(itemsPerPage).ToListAsync();
-
-            if (view.Products == null || view.Products.Count == 0) return Redirect("/Productions/EmptyProductionPage");
+            view.Products = await query.Skip(currentPageIndex * itemsPerPage).Take(itemsPerPage).ToListAsync();
 
             return View(view);
         }
@@ -67,7 +75,15 @@ namespace Neptun.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult> AdminInfo()
         {
-            return View(await db.Productions.ToListAsync());
+            return View(await db.Productions.Select(x => new ProductionListViewModel
+            {
+                Id = x.Id,
+                Title = x.Title,
+                FullDescriptionPdf = x.FullDescriptionPdf,
+                Photo = x.Photo,
+                ButtonDescriptionName = x.ButtonDescriptionName,
+                ProductType = x.ProductType
+            }).ToListAsync());
         }
 
         public async Task<ActionResult> Info(int? id)

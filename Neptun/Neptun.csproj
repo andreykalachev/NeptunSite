@@ -249,6 +249,7 @@
     <Compile Include="Models\FeedBack.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Production.cs" />
+    <Compile Include="Models\ViewModels\ProductionListViewModel.cs" />
     <Compile Include="Models\ViewModels\ContactsViewModel.cs" />
     <Compile Include="Models\ViewModels\EmployeeCreateEditViewModel.cs" />
     <Compile Include="Models\ViewModels\Identity\AccountViewModels.cs" />
@@ -297,6 +298,9 @@
     </Content>
     <Content Include="Pictures\TD-foto.jpg" />
     <Content Include="Pictures\TD-foto2.jpg" />
+    <Content Include="Pictures\TreatmentFacilities\вариант-1.jpg" />
+    <Content Include="Pictures\TreatmentFacilities\вариант-2.jpg" />
+    <Content Include="Pictures\TreatmentFacilities\схема-в-разрезе.jpg" />
     <Content Include="Pictures\вч связь.jpg" />
     <Content Include="Pictures\вч-защита.jpg" />
     <Content Include="Pictures\ВЧ обработка.jpg" />

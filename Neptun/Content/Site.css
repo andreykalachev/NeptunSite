@@ -29,6 +29,16 @@ html {
     min-height: 100%;
 }
 
+.text-color-blue {
+    color: blue;
+}
+
+.blue-title {
+    margin-left: 5%;
+    color: blue;
+    font-weight: bold;
+}
+
 
 @media (max-width: 420px) {
     .renderbody {
@@ -104,15 +114,7 @@ html {
     background-color: rgba(142, 163, 223, 0.75)
 }
 
-.col-lg-25 {
-    position: relative;
-    width: 100%;
-    min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
-}
-
-@media (min-width: 768px) {
+@media (min-width: 992px) {
     .col-lg-25 {
         -webkit-box-flex: 0;
         -ms-flex: 0 0 20%;

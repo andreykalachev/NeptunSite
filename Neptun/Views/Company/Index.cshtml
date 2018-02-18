@@ -5,7 +5,7 @@
 }
 
 <header class="py-2 bg-image-full" style="background-image: url('/Pictures/ContactsTitle.jpg');">
-    <div class="col-md-4 card-body">
+    <div class="col-sm-12 col-md-8 col-lg-5 card-body">
         <div class="card-header bg-color-blue">
             <h3>Контакты</h3>
             <h5>@Html.DisplayNameFor(model => model.Company.Fax): @Html.DisplayFor(model => model.Company.Fax)</h5>
@@ -27,7 +27,7 @@
             
         <div class="col-lg-25 col-md-4 col-sm-6 text-center mb-5">
             <h5>@Html.DisplayFor(modelItem => item.Position)</h5>
-            <img class="rounded-circle img-fluid d-block mx-auto" height="150" width="150" src=@item.Photo alt="">
+            <img class="rounded-circle img-fluid d-block mx-auto" height="150" width="150" src="@item.Photo" alt="">
             <h5>
                 @Html.DisplayFor(modelItem => item.LastName) @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.Patronymic)
             </h5>
@@ -47,7 +47,7 @@
     </div>
     <script>
         function initMap() {
-            var uluru = { lat: 46.526997, lng: 30.654249 };
+            var uluru = { lat: 46.526458, lng: 30.650840 };
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 13,
                 center: uluru

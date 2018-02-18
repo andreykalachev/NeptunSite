@@ -1,17 +1,35 @@
-﻿@model Neptun.Models.ViewModels.ProductIndexViewModel
+﻿@using Neptun.Models.Enum
+@model Neptun.Models.ViewModels.ProductIndexViewModel
 
 @{
     ViewBag.Title = "Index";
     var leftArrow = Model.CurrentPage != 0 ? "page-item" : "page-item disabled";
     var rigthArrow = Model.CurrentPage != Model.PageCount - 1 ? "page-item" : "page-item disabled";
+
+    var description = "За качество всей поставляемой продукции несем персональную ответственность";
+    var title = "Продукция";
+
+    if (Model.ProductType == ProductType.HfProcessing)
+    {
+        title = "Аппаратура присоединения к ЛЭП 35-750 кВ";
+    }
+    if (Model.ProductType == ProductType.HfProtection)
+    {
+        title = "Аппаратура ВЧ Защиты";
+    }
+    if (Model.ProductType == ProductType.HfCommunication)
+    {
+        title = "Аппаратура высокочастотной связи по ЛЭП 35-750 кВ";
+        description = "Аппаратура, проверенная временем, надежно зарекомендовавшая себя в энергосистемах";
+    }
 }
 
 
 
 <section class="py-5">
     <div class="container">
-        <h1>Продукция</h1>
-        <p class="lead">Самая лучшая продукция во всей Украине и не только</p>
+        <h2>@title</h2>
+        <p class="lead">@description</p>
     </div>
 </section>
 <div class="container">

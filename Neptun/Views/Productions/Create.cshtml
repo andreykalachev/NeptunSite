@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Create";
 }
+
+
 <div class="container">
     <h2>Добавить</h2>
 
@@ -12,7 +14,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
-
+    
+    <style>
+        .table-bordered td {
+            border: 1px solid #000000;
+        }
+    </style>
 
     @using (Html.BeginForm(Html.BeginForm("Create", "Productions", FormMethod.Post, new { enctype = "multipart/form-data" })))
     {

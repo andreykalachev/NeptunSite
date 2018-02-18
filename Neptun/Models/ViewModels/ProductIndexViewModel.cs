@@ -8,7 +8,7 @@ namespace Neptun.Models.ViewModels
         public int PageCount { get; set; }
         public int CurrentPage { get; set; }
         public ProductType? ProductType { get; set; }
-        public List<Production> Products { get; set; }
+        public List<ProductionListViewModel> Products { get; set; }
 
         public ProductIndexViewModel()
         {
