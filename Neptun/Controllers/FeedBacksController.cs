@@ -37,9 +37,12 @@ namespace Neptun.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> AdminInfo()
         {
-            return View(await db.FeedBacks.ToListAsync());
+            var feedBacks = await db.FeedBacks.ToListAsync();
+            feedBacks.Reverse();
+            return View(feedBacks);
         }
 
         [Authorize(Roles = "Admin")]
@@ -59,12 +62,12 @@ namespace Neptun.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             FeedBack feedBack = await db.FeedBacks.FindAsync(id);
             db.FeedBacks.Remove(feedBack);
             await db.SaveChangesAsync();
+            return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
             return RedirectToAction("AdminInfo");
         }
 

@@ -51,7 +51,7 @@ namespace Neptun.Controllers
             {
                 db.News.Add(news);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("AdminInfo");
             }
 
             return View(news);
@@ -109,7 +109,6 @@ namespace Neptun.Controllers
         // POST: News/Delete/5
         [HttpPost, ActionName("Delete")]
         [Authorize(Roles = "Admin")]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             News news = await db.News.FindAsync(id);

@@ -4,14 +4,12 @@
     ViewBag.Title = "AdminInfo";
 }
 <div class="container">
-    <h3>Продукция</h3>
+    <h2 class="m-5">Работники</h2>
 
-    <p>
-        @Html.ActionLink("Добавить", "Create")
-    </p>
-    <p>
-        @Html.ActionLink("К виду пользователя", "Index")
-    </p>
+    <a class="btn btn-success mb-2" href='@Url.Action("Create", "Productions")'>Добавить продукцию</a>
+    
+    <a class="btn btn-secondary mb-2" href='@Url.Action("Index", "Productions")'>К виду пользователя</a>
+
     <table class="table">
         <tr>
             <th>
@@ -35,7 +33,7 @@
                 <td>
                     @if (!string.IsNullOrEmpty(item.ButtonDescriptionName))
                     {
-                    <a href='@Url.Action("DisplayPdf", "Productions", new {id = item.Id})' Onclick="window.open('@Url.Action("DisplayPdf", "Productions", new {id = item.Id})', target='_blank')">@Html.DisplayFor(modelItem => item.ButtonDescriptionName)</a>
+                        <a href='@Url.Action("DisplayPdf", "Productions", new {id = item.Id})' Onclick="window.open('@Url.Action("DisplayPdf", "Productions", new {id = item.Id})', target='_blank')">@Html.DisplayFor(modelItem => item.ButtonDescriptionName)</a>
                     }
                     else
                     {
@@ -46,12 +44,33 @@
                     @Html.DisplayFor(modelItem => item.ProductType);
                 </td>
                 <td>
-                    @Html.ActionLink("Изменить", "Edit", new { id = item.Id })
-                    @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
-                    @Html.ActionLink("Описание", "Info", new { id = item.Id })
+                    <a class="btn btn-warning" href='@Url.Action("Edit", "Productions", new { id = item.Id })'>Изменить</a>
+                    <button class="btn btn-danger" onclick="deleteItem(@item.Id)">Удалить</button>
+                    <a class="btn btn-info" href='@Url.Action("Info", "Productions", new { id = item.Id })'>Описание</a>
                 </td>
             </tr>
         }
 
     </table>
 </div>
+
+@section Scripts{
+    <script>
+        function deleteItem(item) {
+            var confirmDelete = confirm("Вы уверенны что хотите удалить эту запись?");
+            if (confirmDelete) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Productions/Delete",
+                    data: {"Id": item},
+                    success: function() {
+                        window.location.replace("@Url.Action("AdminInfo", "Productions")");
+                    },
+                    error: function(data) {
+                        alert(data.x);
+                    }
+                });
+            }
+        };
+    </script>
+}

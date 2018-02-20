@@ -4,7 +4,7 @@
     ViewBag.Title = "AdminInfo";
 }
 <div class="container">
-    <h3>Обратная связь</h3>
+    <h3 class="m-5">Обратная связь</h3>
 
     <table class="table">
         <tr>
@@ -45,10 +45,30 @@
                     @Html.DisplayFor(modelItem => item.Message)
                 </td>
                 <td>
-                    @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+                    <button class="btn btn-danger" onclick="deleteItem(@item.Id)">Удалить</button>
                 </td>
             </tr>
         }
-
     </table>
 </div>
+
+@section Scripts{
+    <script>
+        function deleteItem(item) {
+            var confirmDelete = confirm("Вы уверенны что хотите удалить эту запись?");
+            if (confirmDelete) {
+                $.ajax({
+                    type: "POST",
+                    url: "/FeedBacks/Delete",
+                    data: {"Id": item},
+                    success: function() {
+                        window.location.replace("@Url.Action("AdminInfo", "FeedBacks")");
+                    },
+                    error: function(data) {
+                        alert(data.x);
+                    }
+                });
+            }
+        };
+    </script>
+}

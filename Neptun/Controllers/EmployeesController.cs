@@ -115,7 +115,6 @@ namespace Neptun.Controllers
         // POST: Employees/Delete/5
         [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Employee employee = await db.Employees.FindAsync(id);

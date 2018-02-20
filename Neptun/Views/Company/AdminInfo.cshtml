@@ -4,7 +4,7 @@
     ViewBag.Title = "AdminInfo";
 }
 <div class="container">
-    <h3>Компания</h3>
+    <h3 class="m-5">Компания</h3>
 
     <div>
         <hr />
@@ -44,6 +44,6 @@
         </dl>
     </div>
     <p>
-        @Html.ActionLink("Изменить", "Edit", new { id = Model.Id })
+        <a class="btn btn-info" href='@Url.Action("Edit", "Company",new { id = Model.Id })'>Изменить</a>
     </p>
 </div>

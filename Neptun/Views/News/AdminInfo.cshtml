@@ -4,11 +4,10 @@
     ViewBag.Title = "AdminInfo";
 }
 <div class="container">
-    <h2>Новости</h2>
+    <h2 class="m-5">Новости</h2>
 
-    <p>
-        @Html.ActionLink("Добавить новость", "Create")
-    </p>
+    <a class="btn btn-success mb-2" href='@Url.Action("Create", "News")'>Добавить новость</a>
+
     <table class="table">
         <tr>
             <th>
@@ -36,11 +35,32 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    @Html.ActionLink("Изменить", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+                    <a class="btn btn-warning" href='@Url.Action("Edit", "News", new { id = item.Id })'>Изменить</a>
+                    <button class="btn btn-danger" onclick="deleteItem(@item.Id)">Удалить</button>
                 </td>
             </tr>
         }
 
     </table>
 </div>
+
+@section Scripts{
+    <script>
+        function deleteItem(item) {
+            var confirmDelete = confirm("Вы уверенны что хотите удалить эту запись?");
+            if (confirmDelete) {
+                $.ajax({
+                    type: "POST",
+                    url: "/News/Delete",
+                    data: {"Id": item},
+                    success: function() {
+                        window.location.replace("@Url.Action("AdminInfo", "News")");
+                    },
+                    error: function(data) {
+                        alert(data.x);
+                    }
+                });
+            }
+        };
+    </script>
+}

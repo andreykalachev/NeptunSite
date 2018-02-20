@@ -5,7 +5,7 @@
 }
 
 <div class="container">
-    <h3>Вы уверены что хотите удалить эту продукцию @Html.ActionLink("@Html.DisplayFor(model => model.Title)", "Info")?</h3>
+    <h3>Вы уверены что хотите удалить эту продукцию?</h3>
     <div>
         <hr />
         <dl class="dl-horizontal">
@@ -23,7 +23,7 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Description)
+                @Html.Raw(Model.Description)
             </dd>
 
             <dt>
