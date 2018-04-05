@@ -42,6 +42,18 @@ namespace Neptun.Models.ViewModels
 
         public HttpPostedFileBase HttpPostedFilePhoto { get; set; }
 
+        [Display(Name = "Title")]
+        [MaxLength(60, ErrorMessage = "Допустимая длина 60 превышена")]
+        public string PageTitle { get; set; }
+
+        [Display(Name = "Description")]
+        [MaxLength(200, ErrorMessage = "Допустимая длина 200 превышена")]
+        public string PageDescription { get; set; }
+
+        [Display(Name = "Keywords")]
+        [MaxLength(200, ErrorMessage = "Допустимая длина 200 превышена")]
+        public string PageKeywords { get; set; }
+
         public static implicit operator Production(ProductionCreateEditViewModel productionViewModel)
         {
             return new Production
@@ -52,7 +64,10 @@ namespace Neptun.Models.ViewModels
                 FullDescriptionPdf = productionViewModel.FullDescriptionPdf,
                 Photo = productionViewModel.Photo,
                 ButtonDescriptionName = productionViewModel.ButtonDescriptionName,
-                ProductType = productionViewModel.ProductType
+                ProductType = productionViewModel.ProductType,
+                PageTitle = productionViewModel.PageTitle,
+                PageDescription = productionViewModel.PageDescription,
+                PageKeywords = productionViewModel.PageKeywords
             };
         }
 
@@ -68,7 +83,10 @@ namespace Neptun.Models.ViewModels
                 ButtonDescriptionName = production.ButtonDescriptionName,
                 ProductType = production.ProductType,
                 HttpPostedFilePhoto = null,
-                HttpPostedFilePdf = null
+                HttpPostedFilePdf = null,
+                PageTitle = production.PageTitle,
+                PageDescription = production.PageDescription,
+                PageKeywords = production.PageKeywords
             };
         }
     }

@@ -62,7 +62,7 @@ namespace Neptun.Controllers
             return View();
         }
 
-        public ActionResult Сabinets()
+        public ActionResult Cabinets()
         {
             return View();
         }
@@ -150,7 +150,8 @@ namespace Neptun.Controllers
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(
-            [Bind(Include = "Id,Title,Description,FullDescriptionPdf,ButtonDescriptionName,ProductType,Photo, HttpPostedFilePhoto, HttpPostedFilePdf")]
+            [Bind(Include = "Id,Title,Description,FullDescriptionPdf,ButtonDescriptionName,ProductType,Photo, HttpPostedFilePhoto, HttpPostedFilePdf," +
+                            "PageTitle, PageDescription, PageKeywords")]
             ProductionCreateEditViewModel productionViewModel)
         {
             if (ModelState.IsValid)
@@ -193,7 +194,8 @@ namespace Neptun.Controllers
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(
-            [Bind(Include = "Id,Title,Description,FullDescriptionPdf,ButtonDescriptionName,ProductType,Photo, HttpPostedFilePhoto, HttpPostedFilePdf")]
+            [Bind(Include = "Id,Title,Description,FullDescriptionPdf,ButtonDescriptionName,ProductType,Photo, HttpPostedFilePhoto, HttpPostedFilePdf," +
+                            "PageTitle, PageDescription, PageKeywords")]
             ProductionCreateEditViewModel productionViewModel)
         {
             if (ModelState.IsValid)

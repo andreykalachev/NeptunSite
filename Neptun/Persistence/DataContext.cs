@@ -10,7 +10,7 @@ namespace Neptun.Persistence
     public class DataContext : DbContext
     {
         public DataContext()
-            : base("LocalDB")
+            : base("1GbDb")
         {
         }
 
@@ -66,6 +66,14 @@ namespace Neptun.Persistence
             modelBuilder.Entity<Production>().Property(x => x.ButtonDescriptionName).IsOptional();
             modelBuilder.Entity<Production>().Property(x => x.Photo).HasMaxLength(200);
             modelBuilder.Entity<Production>().Property(x => x.Photo).IsOptional();
+
+            modelBuilder.Entity<Production>().Property(x => x.PageTitle).IsOptional();
+            modelBuilder.Entity<Production>().Property(x => x.PageDescription).IsOptional();
+            modelBuilder.Entity<Production>().Property(x => x.PageKeywords).IsOptional();
+
+            modelBuilder.Entity<Production>().Property(x => x.PageTitle).HasMaxLength(60);
+            modelBuilder.Entity<Production>().Property(x => x.PageDescription).HasMaxLength(200);
+            modelBuilder.Entity<Production>().Property(x => x.PageKeywords).HasMaxLength(200);
 
             #endregion
         }

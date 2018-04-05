@@ -1,8 +1,15 @@
 ﻿@model Neptun.Models.Production
 
 @{
-    ViewBag.Title = "Info";
+    ViewBag.Title = string.IsNullOrEmpty(Model.PageTitle) ? Model.Title : Model.PageTitle;
 }
+
+@section metatags
+{
+    <meta name="keywords" content="@Model.PageKeywords"/>
+    <meta name="description" content="@Model.PageDescription"/>
+}
+
 <style>
     .table-bordered td {
         border: 1px solid #000000;
@@ -14,7 +21,7 @@
             @Html.DisplayFor(model => model.Title)
             @if (!string.IsNullOrEmpty(Model.ButtonDescriptionName))
             {
-                <input type="button" class="btn btn-info" onClick="window.open('@Url.Action("DisplayPdf", "Productions", new {id = Model.Id})', target='_blank')"   value='@Html.DisplayFor(modelItem => Model.ButtonDescriptionName)'/>
+                <input type="button" class="btn btn-info" onClick="window.open('@Url.Action("DisplayPdf", "Productions", new {id = Model.Id})', target='_blank')" value='@Html.DisplayFor(modelItem => Model.ButtonDescriptionName)' />
             }
         </h3>
         <hr />

@@ -37,5 +37,17 @@ namespace Neptun.Models
 
         [Display(Name = "Фото")]
         public string Photo { get; set; }
+
+        [Display(Name = "Title")]
+        [MaxLength(60, ErrorMessage = "Допустимая длина 60 превышена")]
+        public string PageTitle { get; set; }
+
+        [Display(Name = "Description")]
+        [MaxLength(200, ErrorMessage = "Допустимая длина 200 превышена")]
+        public string PageDescription { get; set; }
+
+        [Display(Name = "Keywords")]
+        [MaxLength(200, ErrorMessage = "Допустимая длина 200 превышена")]
+        public string PageKeywords { get; set; }
     }
 }

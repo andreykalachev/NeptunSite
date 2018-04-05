@@ -1,7 +1,13 @@
 ﻿@model Neptun.Models.ViewModels.ContactsViewModel
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Контакты ТД Нептун";
+}
+
+@section metatags
+{
+    <meta name="keywords" content="Сотрудники, контакты, связь, адрес, Одесса, Украина, " />
+    <meta name="description" content='Торговый дом Одесского завода "Нептун".' />
 }
 
 <header class="py-2 bg-image-full" style="background-image: url('/Pictures/ContactsTitle.jpg');">
@@ -24,20 +30,20 @@
     <div class="row">
         @foreach (var item in Model.Employees)
         {
-            
-        <div class="col-lg-25 col-md-4 col-sm-6 text-center mb-5">
-            <h5>@Html.DisplayFor(modelItem => item.Position)</h5>
-            <img class="rounded-circle img-fluid d-block mx-auto" height="150" width="150" src="@item.Photo" alt="">
-            <h5>
-                @Html.DisplayFor(modelItem => item.LastName) @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.Patronymic)
-            </h5>
+
+            <div class="col-lg-25 col-md-4 col-sm-6 text-center mb-5">
+                <h5>@Html.DisplayFor(modelItem => item.Position)</h5>
+                <img class="rounded-circle img-fluid d-block mx-auto" height="150" width="150" src="@item.Photo" alt="">
+                <h5>
+                    @Html.DisplayFor(modelItem => item.LastName) @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.Patronymic)
+                </h5>
 
 
-            <h6>@Html.DisplayFor(modelItem => item.PhoneNuber)</h6>
+                <h6>@Html.DisplayFor(modelItem => item.PhoneNuber)</h6>
 
-            <h6>@Html.DisplayFor(modelItem => item.Email)</h6>
+                <h6>@Html.DisplayFor(modelItem => item.Email)</h6>
 
-        </div>
+            </div>
 
         }
     </div>

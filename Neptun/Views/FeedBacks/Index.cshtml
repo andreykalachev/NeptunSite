@@ -1,8 +1,15 @@
 ﻿@model Neptun.Models.FeedBack
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Обратная связь ТД Нептун";
 }
+
+@section metatags
+{
+    <meta name="keywords" content="Обратная связь, связь" />
+    <meta name="description" content='Торговый дом Одесского завода "Нептун". Вы можете свзязаться с нами по поводу заказа продукции или уточнения информаии' />
+}
+
 <div class="container">
     @using (Html.BeginForm("Index", "FeedBacks", FormMethod.Post))
     {

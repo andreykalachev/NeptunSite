@@ -21,7 +21,7 @@ namespace Neptun.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("LocalDB", throwIfV1Schema: false)
+            : base("1GbDb", throwIfV1Schema: false)
         {
         }
 
