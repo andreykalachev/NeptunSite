@@ -1,4 +1,231 @@
 ﻿
+/*Header*/
+
+.renderbody {
+    padding-top: 64px;
+}
+
+header {
+    z-index: 10;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #4F84C4;
+    position: fixed;
+    width: 100%;
+    transition: .5s;
+}
+
+    header.collapsed {
+        transition: 2s;
+        visibility: hidden;
+        opacity: 0;
+    }
+
+.header-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+#menu-checkbox, #dropdown-checkbox {
+    display: none;
+}
+
+nav {
+    margin-right: 4%;
+    font-size: 18px;
+    display: flex;
+    justify-content: flex-end;
+    height: 64px;
+}
+
+.main-menu {
+    margin: 0;
+    padding: 0;
+}
+
+nav.navigation hr {
+    padding: 0;
+    margin: 0;
+    border-width: 1px;
+    border-style: inset;
+}
+
+    nav ul li {
+        padding: 0;
+        list-style-type: none;
+        display: inline-block;
+    }
+
+    nav.navigation ul li a, .dropdown label {
+        padding: 20px 20px;
+        line-height: 24px;
+        text-decoration: none;
+        display: inline-block;
+        color: #fff;
+    }
+
+.dropdown label {
+    padding-right: 30px;
+}
+
+    nav ul li a:hover, .dropdown label:hover {
+        font-weight: bold;
+        background-color: #ECDB54;
+        color: #000;
+        cursor: pointer;
+    }
+
+li.dropdown {
+    position: relative;
+}
+
+.dropdown label:after {
+    margin: 0 5px;
+    content: "";
+    position: absolute;
+    top: 28px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #fff;
+}
+
+.dropdown label:hover:after {
+    border-top: 10px solid #000;
+}
+
+#dropdown-checkbox:checked + div {
+    display: block;
+}
+
+#dropdown-label {
+    margin-bottom: 0;
+}
+
+nav .dropdown div {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 60px;
+    background-color: rgb(115, 154, 202);
+    box-shadow: 2px 4px 8px;
+    z-index: 10;
+}
+
+nav .dropdown a {
+    flex-direction: column;
+    display: inline-flex;
+}
+
+nav .dropdown ul {
+    flex-direction: column;
+    display: block;
+    padding-left: 0;
+}
+
+    nav .dropdown ul li {  
+        display: block;
+    }
+
+        nav .dropdown ul li a {
+            display: block;
+            font-size: 15px;
+            padding: 20px 40px;
+            white-space: nowrap;
+        }
+
+nav .dropdown:hover div {
+    visibility: visible;
+}
+
+@media screen and (max-width: 740px) {
+    .header-container {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    nav.navigation .main-menu {
+        display: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+
+    nav.navigation .main-menu li {
+            display: block;
+        }
+
+    nav.navigation .main-menu li a, nav .dropdown label {
+                padding: 7px;
+                display: block;
+                font-size: 17px;
+            }
+
+    nav.navigation .toggle-button {
+        padding: 20px 10px;
+        margin: 0;
+        text-align: right;
+        cursor: pointer;
+        display: block;
+        color: #000;
+    }
+
+        .toggle-button::after {
+            content: attr(data-open);
+            display: block;
+        }
+
+    #menu-checkbox:checked + nav .main-menu {
+        display: block;
+    }
+
+    #menu-checkbox:checked + nav .toggle-button::after {
+        content: attr(data-close);
+        display: block;
+    }
+
+    nav.navigation {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        margin: 0 5px;
+        padding: 0 5%;
+        width: 100%;
+    }
+
+    nav.navigation ul li:last-child {
+        padding-bottom: 10px;
+    }
+
+    nav.navigation .dropdown div {
+        border-radius: 10px;
+        visibility: visible;
+        position: relative;
+        top: 0;
+        display: none;
+        box-shadow: none;
+    }
+
+    nav.navigation .dropdown div ul li a {
+            padding: 8px;
+            font-size: 14px;
+        }
+
+    nav.navigation .dropdown label:hover, nav ul li a:hover {
+        background-color: inherit;
+    }
+
+    nav.navigation .dropdown label:after {
+        top: 15px;
+    }
+}
+
+
+
+
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -146,4 +373,43 @@ html {
 #map {
     height: 400px;
     width: 100%;
+}
+
+
+/* idn */
+
+.carousel-item {
+    height: 65vh;
+    min-height: 300px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.portfolio-item {
+    margin-bottom: 30px;
+}
+
+.business-header {
+    height: 50vh;
+    min-height: 300px;
+    background: url('http://placehold.it/1920x400') center center no-repeat scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.card {
+    height: 100%;
+}
+
+.bg-image-full {
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
 }

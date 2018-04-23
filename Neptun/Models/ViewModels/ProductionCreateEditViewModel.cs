@@ -43,15 +43,15 @@ namespace Neptun.Models.ViewModels
         public HttpPostedFileBase HttpPostedFilePhoto { get; set; }
 
         [Display(Name = "Title")]
-        [MaxLength(60, ErrorMessage = "Допустимая длина 60 превышена")]
+        [MaxLength(100, ErrorMessage = "Допустимая длина 100 превышена")]
         public string PageTitle { get; set; }
 
         [Display(Name = "Description")]
-        [MaxLength(200, ErrorMessage = "Допустимая длина 200 превышена")]
+        [MaxLength(300, ErrorMessage = "Допустимая длина 300 превышена")]
         public string PageDescription { get; set; }
 
         [Display(Name = "Keywords")]
-        [MaxLength(200, ErrorMessage = "Допустимая длина 200 превышена")]
+        [MaxLength(300, ErrorMessage = "Допустимая длина 300 превышена")]
         public string PageKeywords { get; set; }
 
         public static implicit operator Production(ProductionCreateEditViewModel productionViewModel)

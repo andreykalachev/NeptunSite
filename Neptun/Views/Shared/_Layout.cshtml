@@ -5,10 +5,7 @@
 <head>
     <link href="/content/Site.css" rel="stylesheet">
     <link href="/content/bootstrap.min.css" rel="stylesheet">
-    <link href="/content/full-width-pics.css" rel="stylesheet">
-    <link href="/content/business-frontpage.css" rel="stylesheet">
-    <link href="/content/modern-business.css" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <meta charset="utf-8" />
     @RenderSection("metatags", false)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,67 +15,79 @@
 
 </head>
 <body>
-    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href='@Url.Action("Index", "Home")'>Главная</a>
+
+    <header>
+        <div class="header-container">
+            <input type="checkbox" id="menu-checkbox">
+            <nav class="navigation">
+                <label for="menu-checkbox" class="toggle-button" data-open="МЕНЮ" data-close="ЗАКРЫТЬ"></label>
+                <ul class="main-menu">
+                    <li>
+                        <a href="@Url.Action("Index", "Home")">ГЛАВНАЯ</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href='@Url.Action("Index", "Productions")' id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Продукция
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-                            <a class="dropdown-item" href='@Url.Action("Index", "Productions")'>Вся продукция</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href='@Url.Action("Index", "Productions", new {productType = ProductType.HfProcessing})'>ВЧ Обработка</a>
-                            <a class="dropdown-item" href='@Url.Action("Index", "Productions", new {productType = ProductType.HfCommunication})'>ВЧ Связь</a>
-                            <a class="dropdown-item" href='@Url.Action("Index", "Productions", new {productType = ProductType.HfProtection})'>ВЧ Защита</a>
-                            <a class="dropdown-item" href='@Url.Action("Cabinets", "Productions")'>Шкафы</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href='@Url.Action("TreatmentFacilities", "Productions")'>Очистные сооружения</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href='@Url.Action("Index", "Productions", new {productType = ProductType.Other})'>Прочее</a>
+                    <li class="dropdown">
+                        <label for="dropdown-checkbox" id="dropdown-label">ПРОДУКЦИЯ</label>
+                        <input type="checkbox" id="dropdown-checkbox">
+                        <div>
+                            <ul>
+                                <li>
+                                    <a href="@Url.Action("Index", "Productions")">Вся продукция</a>
+                                </li>
+                                <hr>
+                                <li>
+                                    <a href="@Url.Action("Index", "Productions", new {productType = ProductType.HfProcessing})">ВЧ Обработка</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "Productions", new {productType = ProductType.HfCommunication})">ВЧ Связь</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "Productions", new {productType = ProductType.HfProtection})">ВЧ Защита</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Cabinets", "Productions")">Шкафы</a>
+                                </li>
+                                <hr>
+                                <li>
+                                    <a href="@Url.Action("TreatmentFacilities", "Productions")">Очистные сооружения</a>
+                                </li>
+                                <hr>
+                                <li>
+                                    <a href="@Url.Action("Index", "Productions", new {productType = ProductType.Other})">Прочее</a>
+                                </li>
+                            </ul>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href='@Url.Action("Index", "News")'>Новости</a>
+                    <li>
+                        <a href="@Url.Action("Index", "News")">НОВОСТИ</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href='@Url.Action("Index", "Company")'>Контакты</a>
+                    <li>
+                        <a href="@Url.Action("Index", "Company")">КОНТАКТЫ</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href='@Url.Action("Index", "FeedBacks")'>Обратная связь</a>
+                    <li>
+                        <a href="@Url.Action("Index", "FeedBacks")">СВЯЗЬ</a>
                     </li>
-                    
                 </ul>
-                @if (User.IsInRole("Admin"))
-                {
-                    <a class="navbar-brand" href='@Url.Action("Admin", "Home")'>Admin</a>
-                }
-            </div>
+            </nav>
         </div>
-    </nav>
+    </header>
+
 
     <div class="renderbody">
         @RenderBody()
     </div>
-    
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("./scripts/user/header-script.js")
     @RenderSection("scripts", required: false)
 
 
-<footer class="footer">
-    <div class="container">
-        <p class="m-2 text-center text-white">Все права на торговую марку принадлежат ООО "Торговый дом Одесского завода "Нептун"</p>
-    </div>
-</footer>
+    <footer class="footer">
+        <div class="container">
+            <p class="m-2 text-center text-white">Все права на торговую марку принадлежат ООО "Торговый дом Одесского завода "Нептун"</p>
+        </div>
+    </footer>
 
 </body>
 </html>

@@ -246,6 +246,10 @@
     <Compile Include="Migrations\201804051425021_ProductionPageInfoAdded.Designer.cs">
       <DependentUpon>201804051425021_ProductionPageInfoAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804051722114_ProductMetadataFieldsSizeIncreaed.cs" />
+    <Compile Include="Migrations\201804051722114_ProductMetadataFieldsSizeIncreaed.Designer.cs">
+      <DependentUpon>201804051722114_ProductMetadataFieldsSizeIncreaed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Employee.cs" />
@@ -281,9 +285,6 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\business-frontpage.css" />
-    <Content Include="Content\full-width-pics.css" />
-    <Content Include="Content\modern-business.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -357,6 +358,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\user\header-script.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -470,6 +472,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804051425021_ProductionPageInfoAdded.resx">
       <DependentUpon>201804051425021_ProductionPageInfoAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804051722114_ProductMetadataFieldsSizeIncreaed.resx">
+      <DependentUpon>201804051722114_ProductMetadataFieldsSizeIncreaed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
