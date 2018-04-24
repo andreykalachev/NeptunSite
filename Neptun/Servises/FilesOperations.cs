@@ -15,7 +15,7 @@ namespace Neptun.Servises
             string newFilePath = null;
             if (photo != null && photo.ContentLength > 0)
             {
-                var directory = @"~/App_Data/DownloadedPictures/";
+                var directory = @"~/DownloadedPictures/";
 
                 var fileExtention = Path.GetExtension(photo.FileName);
 
@@ -35,7 +35,7 @@ namespace Neptun.Servises
             string newFilePath = null;
             if (file != null && file.ContentLength > 0)
             {
-                var directory = @"~/App_Data/DownloadedPDF/";
+                var directory = @"~/DownloadedPDF/";
 
                 var fileExtention = Path.GetExtension(file.FileName);
 
