@@ -146,6 +146,10 @@ nav .dropdown:hover div {
         justify-content: space-between;
     }
 
+    nav.navigation ul.main-menu {
+        border-top: 1px solid #fff;
+    }
+
     nav.navigation .main-menu {
         display: none;
         padding: 0;

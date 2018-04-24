@@ -2,166 +2,265 @@
 @model Neptun.Models.Company
 
 @{
-    ViewBag.Title = "Торговый дом Одесского завода Нептун";
+    Layout = "";
 }
 
-@section metatags
-{
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="keywords" content="ВЧ обработка, ВЧ связь, ВЧ защита, шкафы ШРЗиФб ШОН, Одесса, Нептун, Украина, связь, заградитель, элемент настройки, фильтр присоединения" />
     <meta name="description" content='Торговый дом Одесского завода "Нептун". Производство и реализация электротехнического оборудования.
           Надежные и своевременные поставки оборудования и комплектующих на предприятия генерации и распределения энергосистем Украины и ближнего зарубежья.' />
-}
+    <link rel="stylesheet" href="/content/home-page-style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <title>Торговый дом Одесского завода Нептун</title>
+</head>
 
-<section class=" py-5 bg-image-full" style="background-image: url('/Pictures/MainPageTitle.jpg');">
-    <img class="p-4 mb-2 mt-2 img-fluid d-block mx-auto" src="/Pictures/Neptun_animat.gif" style="width: 190px; height: 190px" alt="">
-</section>
-
-
-<section class="py-5">
-    <div class="container">
-        <h1 style="color: rgb(13, 13, 112)">ООО "Торговый дом Одесского завода "Нептун"</h1>
-        <p class="lead">Производство и реализация электротехнического оборудования</p>
-        <p>Надежные и своевременные поставки оборудования и комплектующих на предприятия генерации и распределения энергосистем Украины и ближнего зарубежья.</p>
-    </div>
-</section>
-
-<div class="container">
-    <div class="row">
-        <div class="col-sm-8">
-            <h2 class="mt-4">Чем мы занимаемся</h2>
-            <p>
-                Основным видом деятельности предприятия является поставка электротехнической продукции. В списке наших получателей предприятия Украины, России, р. Беларусь, Узбекистана и Казахстана. Для продвижения на рынке продукции, необходимой предприятиям электроэнергетики, ООО «Торговый дом Одесского завода «Нептун» неоднократно принимал участие в специализированных выставках. Ответственность и надежность сотрудников являются гарантией успеха выполнения заключенных с нами договоров.
-            </p>
+<body>
+    <header>
+        <div class="header-container">
+            <input type="checkbox" id="menu-checkbox">
+            <nav>
+                <label for="menu-checkbox" class="toggle-button" data-open="МЕНЮ" data-close="ЗАКРЫТЬ"></label>
+                <ul class="main-menu">
+                    <li>
+                        <a href="@Url.Action("Index", "Home")">ГЛАВНАЯ</a>
+                    </li>
+                    <li class="dropdown">
+                        <label for="dropdown-checkbox" id="#dropdown-label">ПРОДУКЦИЯ</label>
+                        <input type="checkbox" id="dropdown-checkbox">
+                        <div>
+                            <ul>
+                                <li>
+                                    <a href="@Url.Action("Index", "Productions")">Вся продукция</a>
+                                </li>
+                                <hr>
+                                <li>
+                                    <a href="@Url.Action("Index", "Productions", new {productType = ProductType.HfProcessing})">ВЧ Обработка</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "Productions", new {productType = ProductType.HfCommunication})">ВЧ Связь</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "Productions", new {productType = ProductType.HfProtection})">ВЧ Защита</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Cabinets", "Productions")">Шкафы</a>
+                                </li>
+                                <hr>
+                                <li>
+                                    <a href="@Url.Action("TreatmentFacilities", "Productions")">Очистные сооружения</a>
+                                </li>
+                                <hr>
+                                <li>
+                                    <a href="@Url.Action("Index", "Productions", new {productType = ProductType.Other})">Прочее</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "News")">НОВОСТИ</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Company")">КОНТАКТЫ</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "FeedBacks")">СВЯЗЬ</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-        <div class="col-sm-4">
-            <h2 class="mt-4">Контакты</h2>
-            <address>
-                <strong>Адрес:</strong>
-                @Html.DisplayFor(model => model.Address)
-            </address>
-            <address>
-                <strong>Телефон:</strong>
-                @Html.DisplayFor(model => model.PhoneNumber)
-                <br>
-                <strong>Факс:</strong>
-                @Html.DisplayFor(model => model.Fax)
-                <br>
-                <strong>Email:</strong>
-                @Html.DisplayFor(model => model.Email)
-            </address>
-        </div>
-    </div>
+    </header>
+    <main>
 
-    <h2 class="mt-4">Наша продукция</h2>
-    <div class="row">
-        <div class="col-sm-4 my-4">
-            <div class="card">
-                <a href='@Url.Action("Index", "Productions", new {productType = ProductType.HfProcessing})'>
-                    <img class="card-img-top" src="/Pictures/HfProcessing.jpg" alt="">
-                </a>
-                <div class="card-body">
-                    <h4 class="card-title">ВЧ Обработка</h4>
-                    <p class="card-text">Производство и поставка устройств для присоединения аппаратуры вч связи и защиты к линиям электропередач.</p>
-                </div>
-                <div class="card-footer">
-                    <a class="btn btn-primary" href='@Url.Action("Index", "Productions", new {productType = ProductType.HfProcessing})'>Подробнее</a>
-                </div>
+        <div class="top-slide" id="#top-slide">
+            <h1>Торговый дом Одесского завода "Нептун"</h1>
+            <h2>Производство и реализация электротехнического оборудования</h2>
+            <div class="logo">
             </div>
         </div>
-        <div class="col-sm-4 my-4">
-            <div class="card">
-                <a href='@Url.Action("Index", "Productions", new {productType = ProductType.HfCommunication})'>
-                    <img class="card-img-top" src="/Pictures/HfCommunication.jpg" alt="">
-                </a>
-                <div class="card-body">
-                    <h4 class="card-title">ВЧ Связь</h4>
-                    <p class="card-text">Каналообразующая аппаратура и комплектующие к ней для организации диспетчерской и технологической связи.</p>
+
+        <div class="page-container">
+            <section class="main-section">
+                <div class="what-we-do">
+                    <h3>Чем мы занимаемся</h3>
+                    <p>
+                        Основным видом деятельности предприятия является поставка электротехнической продукции. В списке наших получателей предприятия
+                        Украины, России, р. Беларусь, Узбекистана и Казахстана. Для продвижения на рынке продукции, необходимой
+                        предприятиям электроэнергетики, ООО «Торговый дом Одесского завода «Нептун» неоднократно принимал
+                        участие в специализированных выставках. Ответственность и надежность сотрудников являются гарантией
+                        успеха выполнения заключенных с нами договоров.
+                    </p>
                 </div>
-                <div class="card-footer">
-                    <a class="btn btn-primary" href='@Url.Action("Index", "Productions", new {productType = ProductType.HfCommunication})'>Подробнее</a>
+                <div class="contacts">
+                    <h3>Контакты</h3>
+                    <address>
+                        <strong>Адрес:</strong>
+                        @Html.DisplayFor(model => model.Address)
+                    </address>
+                    <address>
+                        <strong>Телефон:</strong>
+                        @Html.DisplayFor(model => model.PhoneNumber)
+                        <br>
+                        <strong>Факс:</strong>
+                        @Html.DisplayFor(model => model.Fax)
+                        <br>
+                        <strong>Email:</strong>
+                        @Html.DisplayFor(model => model.Email)
+                    </address>
                 </div>
+            </section>
+
+            <section class="production">
+                <h3>Наша продукция</h3>
+                    <div class="production-cards">
+                        <div class="card">
+                            <a href='@Url.Action("Index", "Productions", new {productType = ProductType.HfProcessing})'>
+                                <div class="card-img">
+                                    <img src="/Pictures/HfProcessing.jpg" alt="ВЧ Обработка">
+                                </div>
+                                <div class="card-body">
+                                    <h4>ВЧ Обработка</h4>
+                                    <p>
+                                        Производство и поставка устройств для присоединения аппаратуры вч связи и защиты к линиям
+                                        электропередач.
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="card">
+                            <a href='@Url.Action("Index", "Productions", new {productType = ProductType.HfCommunication})'>
+                                <div class="card-img">
+                                    <img src="/Pictures/HfCommunication.jpg" alt="ВЧ Связь">
+                                </div>
+                                <div class="card-body">
+                                    <h4>ВЧ Связь</h4>
+                                    <p>
+                                        Каналообразующая аппаратура и комплектующие к ней для организации диспетчерской и технологической
+                                        связи.
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="card">
+                            <a href='@Url.Action("Index", "Productions", new {productType = ProductType.HfProtection})'>
+                                <div class="card-img">
+                                    <img src="/Pictures/HfProtection.jpg" alt="ВЧ Защита">
+                                </div>
+                                <div class="card-body">
+                                    <h4>ВЧ Защита</h4>
+                                    <p>
+                                        Системы защиты подстанций и линий электропередач напряжением 35-750 кВ.
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-big">
+                        <a href='@Url.Action("Cabinets", "Productions")'>
+                            <div class="card-img">
+                                <img src="/Pictures/Cabinets.jpg" alt="Шкафы ШРЗиА">
+                            </div>
+                            <div class="card-body">
+                                <h4>Шкафы ШРЗиА , ШОН, шкафы наружной установки , щитки этажные</h4>
+                                <p>
+                                    Мы предлагаем комплекс аппаратуры, позволяющей без особых затрат выполнить модернизацию подстанций
+                                    с переводом средств РЗА на современную базу.
+                                </p>
+                                <p>
+                                    Модернизация существующего оборудования может выполняться на базе оборудования установленного
+                                    в шкафы со степенью защиты и перечнем комплектации, определяемой заказчиком.
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card-big">
+                        <a href='@Url.Action("TreatmentFacilities", "Productions")'>
+                            <div class="card-img">
+                                <img src="/Pictures/TreatmentFacilities.jpg" alt="Системы очистки">
+                            </div>
+                            <div class="card-body">
+                                <h4>Системы очистки</h4>
+                                <p>
+                                    ТД одесского завода "Нептун" является официальным представителем ЗАО "Тraidenis" и предлагает
+                                    очистные сооружения биологической очистки марки NV.
+                                </p>
+                                <p>
+                                    Предлагаемые сооружения рассчитаны на очистку бытовых и близких к ним по составу стоков,
+                                    т.е. сточной воды из кухни, ванной, туалета и других, схожих по назначению, помещений.
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+            </section>
+        </div>
+
+        <div class="about-us">
+            <div class="container">
+                <section>
+                    <h3>О торговом доме</h3>
+                    <div class="inner-container">
+                        <article>
+                            <p>
+                                ООО «Торговый дом Одесского завода «Нептун» был создан в 2006 году как структурное подразделение
+                                Корпорации «СОЮЗ» для реализации и продвижения на рынке электротехнической продукции, выпускаемой
+                                ООО «Одесский завод «Нептун».
+                            </p>
+                            <p>
+                                Специалисты Торгового дома принимали активное и непосредственное участие в разработке новых видов
+                                аппаратуры связи, релейной защиты и высокочастотной обработки ЛЭП.
+                            </p>
+                        </article>
+                        <div class="about-us-img">
+                            <img src="/Pictures/TD-foto.jpg" alt="Торговый дом Нептун">
+                        </div>
+                    </div>
+                    <div class="inner-container">
+                        <div class="about-us-img">
+                            <img src="/Pictures/TD-foto2.jpg" alt="Торговый дом Нептун">
+                        </div>
+                        <article>
+                            <p>
+                                Накопив богатый опыт, после реорганизации завода «Нептун», ООО «Торговый дом Одесского завода
+                                «Нептун» получил лицензию на производство собственной продукции и унаследовал Торговую марку
+                                завода «Нептун», имеющую 70 летнюю историю производства устройств связи и вч защиты.
+                            </p>
+                            <p>В 2017 г. начато производство и реализация продукции собственного изготовления.</p>
+                            <p>
+                                Наряду с этим мы готовы поставлять продукцию электротехнического назначения других производителей,
+                                как отечественных, так и мировых брендов.
+                            </p>
+                        </article>
+                    </div>
+                </section>
             </div>
         </div>
-        <div class="col-sm-4 my-4">
-            <div class="card">
-                <a href='@Url.Action("Index", "Productions", new {productType = ProductType.HfProtection})'>
-                    <img class="card-img-top" src="/Pictures/HfProtection.jpg" alt="">
+        <div class="page-container">
+            <section class="cooperation">
+                <a href='@Url.Action("Index", "FeedBacks")'>
+                    <img src="/Pictures/Cooperation.png" alt="Торговый дом Нептун">
+                    <article>
+                        <p>
+                            Приглашаем к сотрудничеству все заинтересованные организации. По вопросам партнерсва связывайтесь
+                            с нами.
+                        </p>
+                    </article>
                 </a>
-                <div class="card-body">
-                    <h4 class="card-title">ВЧ Защита</h4>
-                    <p class="card-text">Системы защиты подстанций и линий электропередач напряжением 35-750 кВ.</p>
-                </div>
-                <div class="card-footer">
-                    <a class="btn btn-primary" href='@Url.Action("Index", "Productions", new {productType = ProductType.HfProtection})'>Подробнее</a>
-                </div>
-            </div>
+            </section>
         </div>
-    </div>
+    </main>
+    <footer>
+        <div class="page-container">
+            <h4>Все права на торговую марку принадлежат ООО "Торговый дом Одесского завода "Нептун"</h4>
+        </div>
+    </footer>
+</body>
 
-    <div class="row">
-        <div class="col-md-5">
-            <a href='@Url.Action("Cabinets", "Productions")'>
-                <img class="img-fluid rounded mb-3 mb-md-0" src="/Pictures/Cabinets.jpg" alt="">
-            </a>
-        </div>
-        <div class="col-md-7">
-            <h3>Шкафы ШРЗиА , ШОН, шкафы наружной установки , щитки этажные</h3>
-            <p>Мы предлагаем комплекс аппаратуры, позволяющей без особых затрат выполнить модернизацию подстанций с переводом средств РЗА на современную базу.</p>
-            <p>Модернизация существующего оборудования может выполняться на базе оборудования установленного в шкафы со степенью защиты и перечнем комплектации, определяемой заказчиком. </p>
-            <a class="btn btn-primary" href='@Url.Action("Cabinets", "Productions")'>Подробнее</a>
-        </div>
-    </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/scripts/user/header-script.js" type="text/javascript"></script>
 
-    <div class="row mt-3">
-        <div class="col-md-5">
-            <a href='@Url.Action("TreatmentFacilities", "Productions")'>
-                <img class="img-fluid rounded mb-3 mb-md-0" src="/Pictures/TreatmentFacilities.jpg" alt="">
-            </a>
-        </div>
-        <div class="col-md-7">
-            <h3>Системы очистки</h3>
-            <p>ТД одесского завода "Нептун" является официальным представителем ЗАО "Тraidenis" и предлагает очистные сооружения биологической очистки марки NV.</p>
-            <p>Предлагаемые сооружения рассчитаны на очистку бытовых и близких к ним по составу стоков, т.е. сточной воды из кухни, ванной, туалета и других, схожих по назначению, помещений. </p>
-            <p></p>
-            <a class="btn btn-primary" href='@Url.Action("TreatmentFacilities", "Productions")'>Подробнее</a>
-        </div>
-    </div>
-
-    <hr>
-
-    <div class="row mt-4">
-        <div class="col-lg-6">
-            <h2>О торговом доме</h2>
-            <hr>
-            <p>ООО «Торговый дом Одесского завода «Нептун» был создан в 2006 году как структурное подразделение Корпорации «СОЮЗ» для реализации и продвижения на рынке электротехнической продукции, выпускаемой ООО «Одесский завод «Нептун».</p>
-            <p>Специалисты Торгового дома принимали активное и непосредственное участие в разработке новых видов аппаратуры связи, релейной защиты и высокочастотной обработки ЛЭП. </p>
-        </div>
-        <div class="col-lg-6">
-            <img class="img-fluid rounded" src="/Pictures/TD-foto.jpg" alt="">
-        </div>
-    </div>
-
-    <div class="row mt-4">
-        <div class="col-lg-6">
-            <img class="img-fluid rounded" src="/Pictures/TD-foto2.jpg" alt="">
-        </div>
-        <div class="col-lg-6">
-            <p>Накопив богатый опыт, после реорганизации завода «Нептун», ООО «Торговый дом Одесского завода «Нептун» получил лицензию на производство собственной продукции и унаследовал Торговую марку завода «Нептун», имеющую 70 летнюю историю производства устройств связи и вч защиты.</p>
-            <p>В 2017 г. начато производство и реализация продукции собственного изготовления.</p>
-            <p>Наряду с этим мы готовы поставлять продукцию электротехнического назначения других производителей, как отечественных, так и мировых брендов.</p>
-        </div>
-
-    </div>
-
-    <hr>
-
-
-    <div class="row mb-4">
-        <div class="col-md-8">
-            <p>Приглашаем к сотрудничеству все заинтересованные организации. По вопросам партнерсва связывайтесь с нами.</p>
-        </div>
-        <div class="col-md-4">
-            <a class="btn btn-lg btn-secondary btn-block" href='@Url.Action("Index", "FeedBacks")'>Обратная связь</a>
-        </div>
-    </div>
-</div>
+</html>

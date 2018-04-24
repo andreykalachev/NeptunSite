@@ -285,6 +285,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\home-page-style.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -296,6 +297,7 @@
     <Content Include="Pictures\Cabinets\6.jpg" />
     <Content Include="Pictures\Cabinets\7.jpg" />
     <Content Include="Pictures\ContactsTitle.jpg" />
+    <Content Include="Pictures\Cooperation.png" />
     <Content Include="Pictures\MainPageTitle.jpg" />
     <Content Include="Pictures\Neptun_animat.gif" />
     <Content Include="ApplicationInsights.config">
