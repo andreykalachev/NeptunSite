@@ -1,13 +1,18 @@
 ﻿@model IEnumerable<Neptun.Models.News>
 
 @{
-    ViewBag.Title = "Новости ТД Нептун";
+    ViewBag.Title = "Нептун | Новости";
 }
 
 @section metatags
 {
     <meta name="keywords" content="Новости, Что нового" />
     <meta name="description" content='Что нового в торговом доме Одесского завода "Нептун". Свежие новости, новая продукция и услуги, которые уже доступны у нас.' />
+}
+
+@section links
+{
+    <link rel="canonical" href="http://neptun-odessa.com/News" />
 }
 
 <div class="container">

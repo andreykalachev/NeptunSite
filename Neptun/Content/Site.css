@@ -1,4 +1,15 @@
 ﻿
+body::before {
+    content: " ";
+    display: block;
+    background-color: #4F84C4;
+    width: 100%;
+    height: 64px;
+    top: 0;
+    position: absolute;
+    z-index: -1;
+}
+
 /*Header*/
 
 .renderbody {
@@ -69,7 +80,7 @@ nav.navigation hr {
 }
 
     nav ul li a:hover, .dropdown label:hover {
-        font-weight: bold;
+        text-shadow: 1px 0 0 #000;
         background-color: #ECDB54;
         color: #000;
         cursor: pointer;

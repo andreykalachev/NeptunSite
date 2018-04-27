@@ -1,13 +1,20 @@
 ﻿@model Neptun.Models.Production
 
 @{
-    ViewBag.Title = string.IsNullOrEmpty(Model.PageTitle) ? Model.Title : Model.PageTitle;
+    var title = string.IsNullOrEmpty(Model.PageTitle) ? Model.Title : Model.PageTitle;
+    ViewBag.Title = "Нуптун | Продукция | " + title;
+    var canonical = "http://neptun-odessa.com/Productions/Info/" + Model.Id;
 }
 
 @section metatags
 {
-    <meta name="keywords" content="@Model.PageKeywords"/>
-    <meta name="description" content="@Model.PageDescription"/>
+    <meta name="keywords" content="@Model.PageKeywords" />
+    <meta name="description" content="@Model.PageDescription" />
+}
+
+@section links
+{
+    <link rel="canonical" href="@canonical" />
 }
 
 <style>

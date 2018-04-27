@@ -5,26 +5,30 @@
     var leftArrow = Model.CurrentPage != 0 ? "page-item" : "page-item disabled";
     var rigthArrow = Model.CurrentPage != Model.PageCount - 1 ? "page-item" : "page-item disabled";
 
+    var canonical = "http://neptun-odessa.com/Productions";
     var description = "За качество всей поставляемой продукции несем персональную ответственность";
-    var title = "Продукция Торгового дома Нептун";
+    var title = "Нептун | Продукция";
     var keywords = "Связь для энергетики, электротехническое оборудование";
 
     if (Model.ProductType == ProductType.HfProcessing)
     {
-        title = "Аппаратура присоединения к ЛЭП 35-750 кВ";
+        canonical += "?productType=HfProcessing";
+        title += " | Аппаратура присоединения к ЛЭП 35-750 кВ";
         description = "Устройства присоединения аппаратуры связи и защиты к линиям ЛЭП 35-750 кВ.";
         keywords += "Заградитель, Фильтр присоединения, ФПМ, Элемент настройки, ЭНУ, разделительный фильр, РФ, конденсатор связи, СМП, СМА, разъединитель, РВО-10/400" +
                     "аппаратура присоединения, ЛЭП, 35-750кВ";
     }
-    if (Model.ProductType == ProductType.HfProtection)
+    else if (Model.ProductType == ProductType.HfProtection)
     {
-        title = "Аппаратура ВЧ Защиты";
+        canonical += "?productType=HfProtection";
+        title += " | Аппаратура ВЧ Защиты";
         description = "Аппаратура, предназначеная для организации высокочастотных каналов защит, телеотключения, телеметрии на линиях ЛЭП";
         keywords += "Пост, ПВЗ, АНКА, Аппаратура ВЧ Защиты, АВЗК, АВЗК-80, высокочастотной защиты, приемо-передатчик, Пост ПВЗ, АКА Кедр";
     }
-    if (Model.ProductType == ProductType.HfCommunication)
+    else if (Model.ProductType == ProductType.HfCommunication)
     {
-        title = "Аппаратура высокочастотной связи по ЛЭП 35-750 кВ";
+        canonical += "?productType=HfCommunication";
+        title += " | Аппаратура высокочастотной связи по ЛЭП 35-750 кВ";
         description = "Аппаратура, предназначеная для организации высокочастотных каналов диспетчерской и технологической связи в энергосистемах на " +
                       "линиях ЛЭП 110-330 кВ. Одноканальные и многоканальный системы связи АВС-ЦМ, АВС-1-1б АВС-3-1, диспетчерские каналы АСКУЭ";
         keywords += "АВС-1-1, АВС-3-1, АВС-ЦМ, АВС, АНС, аппаратура высокочастотной связи, ВЧ связь, ЛЭП, 35-750кВ";
@@ -34,8 +38,13 @@
 
 @section metatags
 {
-    <meta name="keywords" content="@keywords"/>
-    <meta name="description" content="@description"/>
+    <meta name="keywords" content="@keywords" />
+    <meta name="description" content="@description" />
+}
+
+@section links
+{
+    <link rel="canonical" href="@canonical" />
 }
 
 

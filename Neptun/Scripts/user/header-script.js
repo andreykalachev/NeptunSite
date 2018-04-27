@@ -3,7 +3,12 @@
         var lastScrollTop = 0;
         $(window).scroll(function (event) {
             var st = $(this).scrollTop();
-            if (st > lastScrollTop && st > 66 && $(window).width() > 740) {
+            if (st < 64 && lastScrollTop === 0 && $(window).width() > 730) {
+                $('html, body').animate({
+                    scrollTop: 64
+                }, 200);
+            }
+            if (st > lastScrollTop && st > 63 && $(window).width() > 730) {
                 // downscroll code
                 $("header").addClass("collapsed");
             } else {
