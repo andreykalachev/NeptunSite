@@ -7,6 +7,7 @@
     <link href="/content/Site.css" rel="stylesheet">
     <link href="/content/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="icon" href="@Url.Content("/favicon.ico")" />
     <meta charset="utf-8" />
     @RenderSection("metatags", false)
     @RenderSection("links", false)
@@ -84,12 +85,12 @@
     @Scripts.Render("/scripts/user/header-script.js")
     @RenderSection("scripts", required: false)
 
-
-    <footer class="footer">
-        <div class="container">
-            <p class="m-2 text-center text-white">Все права на торговую марку принадлежат ООО "Торговый дом Одесского завода "Нептун"</p>
-        </div>
-    </footer>
+    
+<footer class="footer">
+    <div class="container">
+        <p class="m-2 text-center text-white">Все права на торговую марку принадлежат ООО "Торговый дом Одесского завода "Нептун"</p>
+    </div>
+</footer>
 
 </body>
 </html>

@@ -2,18 +2,20 @@
 @model Neptun.Models.ViewModels.ProductIndexViewModel
 
 @{
-    var leftArrow = Model.CurrentPage != 0 ? "page-item" : "page-item disabled";
-    var rigthArrow = Model.CurrentPage != Model.PageCount - 1 ? "page-item" : "page-item disabled";
+    Layout = "";
+
+    var leftArrow = Model.CurrentPage != 0 ? "" : "not-active";
+    var rigthArrow = Model.CurrentPage != Model.PageCount - 1 ? "" : "not-active";
 
     var canonical = "http://neptun-odessa.com/Productions";
     var description = "За качество всей поставляемой продукции несем персональную ответственность";
-    var title = "Нептун | Продукция";
+    var titleAttr = "Нептун | Продукция - Электротехническое оборудование";
     var keywords = "Связь для энергетики, электротехническое оборудование";
 
     if (Model.ProductType == ProductType.HfProcessing)
     {
         canonical += "?productType=HfProcessing";
-        title += " | Аппаратура присоединения к ЛЭП 35-750 кВ";
+        titleAttr = "Нептун | Продукция | Аппаратура присоединения к ЛЭП 35-750 кВ";
         description = "Устройства присоединения аппаратуры связи и защиты к линиям ЛЭП 35-750 кВ.";
         keywords += "Заградитель, Фильтр присоединения, ФПМ, Элемент настройки, ЭНУ, разделительный фильр, РФ, конденсатор связи, СМП, СМА, разъединитель, РВО-10/400" +
                     "аппаратура присоединения, ЛЭП, 35-750кВ";
@@ -21,83 +23,211 @@
     else if (Model.ProductType == ProductType.HfProtection)
     {
         canonical += "?productType=HfProtection";
-        title += " | Аппаратура ВЧ Защиты";
+        titleAttr = "Нептун | Продукция | Аппаратура ВЧ Защиты";
         description = "Аппаратура, предназначеная для организации высокочастотных каналов защит, телеотключения, телеметрии на линиях ЛЭП";
         keywords += "Пост, ПВЗ, АНКА, Аппаратура ВЧ Защиты, АВЗК, АВЗК-80, высокочастотной защиты, приемо-передатчик, Пост ПВЗ, АКА Кедр";
     }
     else if (Model.ProductType == ProductType.HfCommunication)
     {
         canonical += "?productType=HfCommunication";
-        title += " | Аппаратура высокочастотной связи по ЛЭП 35-750 кВ";
+        titleAttr = "Нептун | Продукция | Аппаратура высокочастотной связи по ЛЭП 35-750 кВ";
         description = "Аппаратура, предназначеная для организации высокочастотных каналов диспетчерской и технологической связи в энергосистемах на " +
                       "линиях ЛЭП 110-330 кВ. Одноканальные и многоканальный системы связи АВС-ЦМ, АВС-1-1б АВС-3-1, диспетчерские каналы АСКУЭ";
         keywords += "АВС-1-1, АВС-3-1, АВС-ЦМ, АВС, АНС, аппаратура высокочастотной связи, ВЧ связь, ЛЭП, 35-750кВ";
     }
-    ViewBag.Title = title;
+    ViewBag.Title = titleAttr;
 }
 
-@section metatags
-{
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/Content/header.css" type="text/css">
+    <link rel="stylesheet" href="/Content/production.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <meta name="keywords" content="@keywords" />
     <meta name="description" content="@description" />
-}
-
-@section links
-{
+    <link rel="icon" href="/favicon.ico" />
     <link rel="canonical" href="@canonical" />
-}
+    <title>@titleAttr</title>
+</head>
 
-
-<section class="py-5">
-    <div class="container">
-        <h2>@title</h2>
-        <p class="lead">@description</p>
-    </div>
-</section>
-<div class="container">
-    <div class="row">
-        @foreach (var item in Model.Products)
-        {
-            <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-                <div class="card h-100">
-                    <div class="card-text h-75">
-                        <h5 class="card-title text-center">
-                            <a href=@Url.Action("Info", "Productions", new {id = item.Id})>@Html.DisplayFor(modelItem => item.Title)</a>
-                        </h5>
-                    </div>
-                    <a href=@Url.Action("Info", "Productions", new {id = item.Id})>
-                        <img class="card-img-top" src="@item.Photo" alt="">
-                    </a>
+<body>
+    <header>
+        <div class="header-container">
+            <input type="checkbox" id="menu-checkbox">
+            <nav>
+                <label for="menu-checkbox" class="toggle-button" data-open="МЕНЮ" data-close="ЗАКРЫТЬ"></label>
+                <ul class="main-menu">
+                    <li>
+                        <a href="@Url.Action("Index", "Home")">ГЛАВНАЯ</a>
+                    </li>
+                    <li class="dropdown">
+                        <label for="dropdown-checkbox" id="#dropdown-label">ПРОДУКЦИЯ</label>
+                        <input type="checkbox" id="dropdown-checkbox">
+                        <div>
+                            <ul>
+                                <li>
+                                    <a href="@Url.Action("Index", "Productions")">Вся продукция</a>
+                                </li>
+                                <hr>
+                                <li>
+                                    <a href="@Url.Action("Index", "Productions", new {productType = ProductType.HfProcessing})">ВЧ Обработка</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "Productions", new {productType = ProductType.HfCommunication})">ВЧ Связь</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "Productions", new {productType = ProductType.HfProtection})">ВЧ Защита</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Cabinets", "Productions")">Шкафы</a>
+                                </li>
+                                <hr>
+                                <li>
+                                    <a href="@Url.Action("TreatmentFacilities", "Productions")">Очистные сооружения</a>
+                                </li>
+                                <hr>
+                                <li>
+                                    <a href="@Url.Action("Index", "Productions", new {productType = ProductType.Other})">Прочее</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "News")">НОВОСТИ</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Company")">КОНТАКТЫ</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "FeedBacks")">СВЯЗЬ</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="page-container">
+            <section role="slider">
+                <div class="prev">
+                    <a href="#">&lsaquo;</a>
                 </div>
-            </div>
-        }
-    </div>
-
-    @if (Model.PageCount > 1)
-    {
-        <nav class="row pl-5">
-            <ul class="pagination">
-                <li class="@leftArrow">
-                    <a class="page-link" tabindex="-1" href=@Url.Action("Index", "Productions", new {page = Model.CurrentPage - 1, productType = Model.ProductType}) aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                </li>
-                @for (var i = 1; i < Model.PageCount + 1; i++)
+                <div class="slider">
+                    <div class="slider-item">
+                        <a href="#">
+                            <span></span>
+                        </a>
+                        <h1>Продукция Торгового дома "Нептун"</h1>
+                        <h4>За качество всей поставляемой продукции несем персональную ответственность</h4>
+                        <ul>
+                            <li>Высокочастотная обработка</li>
+                            <li>Высокочастотная связь</li>
+                            <li>Высокочастотная защита</li>
+                        </ul>
+                    </div>
+                    <div class="slider-item">
+                        <a href="@Url.Action("Index", "Productions", new {productType = ProductType.HfProcessing})">
+                            <span></span>
+                        </a>
+                        <h2>
+                            Высокочастотная обработка
+                        </h2>
+                        <h4>Аппаратура присоединения к ЛЭП 35-750 кВ</h4>
+                        <p>
+                            Создание среды передави высокочастотного сигнала и уменьшения опасного влияния ЛЭП на аппаратуру
+                            связи и защиты
+                        </p>
+                    </div>
+                    <div class="slider-item">
+                        <a href="@Url.Action("Index", "Productions", new {productType = ProductType.HfCommunication})">
+                            <span></span>
+                        </a>
+                        <h2>
+                            Высокочастотная связь
+                        </h2>
+                        <h4>Аппаратура высокочастотной связи по ЛЭП 35-750 кВ</h4>
+                        <p>
+                            Аппаратура, предназначеная для организации высокочастотных каналов диспетчерской и технологической
+                            связи в энергосистемах на линиях ЛЭП 110-750 кВ. Одноканальные и многоканальный системы связи
+                            АВС-ЦМ, АВС-1-1, АВС-3-1, диспетчерские каналы АСКУЭ
+                        </p>
+                    </div>
+                    <div class="slider-item">
+                        <a href="@Url.Action("Index", "Productions", new {productType = ProductType.HfProtection})">
+                            <span></span>
+                        </a>
+                        <h2>
+                            Высокочастотная Защита
+                        </h2>
+                        <h4>Надежность и безопасность эксплуатации в энергосистемах</h4>
+                        <p>
+                            Аппаратура, предназначеная для организации высокочастотных каналов защит, телеотключения, телеметрии
+                            на линиях ЛЭП
+                        </p>
+                    </div>
+                    <div class="dots">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                </div>
+                <div class="next">
+                    <a href="#">&rsaquo;</a>
+                </div>
+            </section>
+            <section class="production" data-type="@Model.ProductType">
+                @foreach (var item in Model.Products)
                 {
-                    var pageActive = Model.CurrentPage == i - 1 ? "page-item active" : "page-item";
-                    <li class="@pageActive"><a class="page-link" href=@Url.Action("Index", "Productions", new {page = i - 1 , productType = Model.ProductType})>@i</a></li>
+                    <div class="item-wrapper">
 
+                        <a href="@Url.Action("Info", "Productions", new {id = item.Id})">
+                            <div class="item">
+
+                                <div class="image">
+                                    <img src="@item.Photo" alt="@Html.DisplayFor(modelItem => item.Title)">
+                                </div>
+                                <div class="description">
+                                    <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 }
-                <li class="@rigthArrow">
-                    <a class="page-link" href=@Url.Action("Index", "Productions", new {page = Model.CurrentPage + 1 , productType = Model.ProductType}) aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+            </section>
+            @if (Model.PageCount > 1)
+            {
+                <section class="pagination">
+                    <ul>
+                        <li class="@leftArrow">
+                            <a class="prev" href="@Url.Action("Index", "Productions", new {page = Model.CurrentPage - 1, productType = Model.ProductType})">&lsaquo;</a>
+                        </li>
+                        @for (var i = 1; i < Model.PageCount + 1; i++)
+                        {
+                            var pageActive = Model.CurrentPage == i - 1 ? "current" : "";
+                            <li class="@pageActive">
+                                <a href="@Url.Action("Index", "Productions", new {page = i - 1, productType = Model.ProductType})">@i</a>
+                            </li>
+                        }
+                        <li class="@rigthArrow">
+                            <a class="next" href="@Url.Action("Index", "Productions", new {page = Model.CurrentPage + 1 , productType = Model.ProductType})">&rsaquo;</a>
+                        </li>
+                    </ul>
+                </section>
+            }
+        </div>
+    </main>
+</body>
 
-    }
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
+        crossorigin="anonymous"></script>
+<script src="/Scripts/user/header-script.js" type="text/javascript"></script>
+<script src="/Scripts/user/production.js" type="text/javascript"></script>
 
-</div>
+</html>

@@ -1,0 +1,225 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+main {
+    padding-top: 64px;
+}
+
+body::before {
+    content: " ";
+    display: block;
+    background-color: #4F84C4;
+    width: 100%;
+    height: 64px;
+    top: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+/*HEADER*/
+
+header {
+    background-color: #4F84C4;
+    position: fixed;
+    width: 100%;
+    transition: .5s;
+    z-index: 1000;
+}
+
+    header.collapsed {
+        transition: 2s;
+        visibility: hidden;
+        opacity: 0;
+    }
+
+.header-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+#menu-checkbox, #dropdown-checkbox {
+    display: none;
+}
+
+nav {
+    margin-right: 4%;
+    font-size: 18px;
+    display: flex;
+    justify-content: flex-end;
+    height: 64px;
+}
+
+    nav ul li {
+        list-style-type: none;
+        display: inline-block;
+    }
+
+        nav ul li a, .dropdown label {
+            padding: 20px 20px;
+            text-decoration: none;
+            display: inline-block;
+            color: #fff;
+            line-height: 24px;
+        }
+
+.dropdown label {
+    padding-right: 40px;
+}
+
+    nav ul li a:hover, .dropdown label:hover {
+        text-shadow: 1px 0 0 #000;
+        background-color: #ECDB54;
+        color: #000;
+        cursor: pointer;
+    }
+
+li.dropdown {
+    position: relative;
+}
+
+.dropdown label:after {
+    margin: 0 5px;
+    ;
+    content: "";
+    position: absolute;
+    top: 28px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #fff;
+}
+
+.dropdown label:hover:after {
+    border-top: 10px solid #000;
+}
+
+#dropdown-checkbox:checked + div {
+    display: block;
+}
+
+.dropdown div {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 60px;
+    background-color: rgb(115, 154, 202);
+    box-shadow: 2px 4px 8px;
+    z-index: 1000;
+}
+
+.dropdown a {
+    flex-direction: column;
+    display: inline-flex;
+}
+
+.dropdown ul {
+    flex-direction: column;
+    display: block;
+}
+
+    .dropdown ul li {
+        display: block;
+    }
+
+        .dropdown ul li a {
+            display: block;
+            font-size: 15px;
+            padding: 20px 40px;
+            white-space: nowrap;
+        }
+
+.dropdown:hover div {
+    visibility: visible;
+}
+
+@media screen and (max-width: 730px) {
+    .header-container {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .main-menu {
+        display: none;
+        width: 100%;
+    }
+
+    ul.main-menu {
+        border-top: 1px solid #fff;
+    }
+
+    .main-menu li {
+        display: block;
+    }
+
+        .main-menu li a, nav .dropdown label {
+            padding: 7px;
+            display: block;
+            font-size: 17px;
+        }
+
+    .toggle-button {
+        padding: 20px 10px;
+        text-align: right;
+        cursor: pointer;
+        display: block;
+        color: #000;
+    }
+
+        .toggle-button::after {
+            content: attr(data-open);
+            display: block;
+        }
+
+    #menu-checkbox:checked + nav .main-menu {
+        display: block;
+    }
+
+    #menu-checkbox:checked + nav .toggle-button::after {
+        content: attr(data-close);
+        display: block;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        margin: 0 5px;
+        padding: 0 5%;
+        width: 100%;
+    }
+
+        nav ul li:last-child {
+            padding-bottom: 10px;
+        }
+
+    .dropdown div {
+        border-radius: 10px;
+        visibility: visible;
+        position: relative;
+        top: 0;
+        display: none;
+        box-shadow: none;
+    }
+
+        .dropdown div ul li a {
+            padding: 8px;
+            font-size: 14px;
+        }
+
+    .dropdown label:hover, nav ul li a:hover {
+        background-color: inherit;
+    }
+
+    .dropdown label:after {
+        top: 15px;
+    }
+}

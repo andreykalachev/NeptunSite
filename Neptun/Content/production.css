@@ -1,0 +1,337 @@
+﻿.page-container {
+    min-height: calc(100vh - 64px);
+    background-color: #dedede;
+    width: 100%;
+}
+
+/*Slider*/
+
+.slider {
+    width: 100%;
+    height: 270px;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+}
+
+    .slider a span {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        cursor: pointer;
+    }
+
+section[role=slider] .prev a, section[role=slider] .next a {
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;
+}
+
+a.not-active {
+    pointer-events: none;
+    cursor: default;
+}
+
+section[role=slider] .prev, section[role=slider] .next {
+    position: absolute;
+    top: 75px;
+    padding-left: 2%;
+    font-size: 140px;
+    z-index: 10;
+    opacity: 0.05;
+}
+
+section[role=slider]:hover .prev, section[role=slider]:hover .next {
+    opacity: 0.3;
+}
+
+section[role=slider] .prev:hover, section[role=slider] .next:hover {
+    opacity: 0.7;
+}
+
+section[role=slider] .next {
+    right: 0;
+    padding-right: 2%;
+}
+
+.slider-item {
+    position: absolute;
+    background: linear-gradient(#999, #dedede);
+    height: 100%;
+    width: 100%;
+    padding: 10px 10%;
+    box-sizing: border-box;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    text-shadow: 1px 1px 3px #999;
+}
+
+    .slider-item h1 {
+        line-height: 36px;
+        font-size: 36px;
+        margin-bottom: 25px;
+    }
+
+
+    .slider-item h2 {
+        line-height: 32px;
+        font-size: 32px;
+        margin-bottom: 15px;
+    }
+
+    .slider-item h4 {
+        line-height: 20px;
+        font-size: 20px;
+    }
+
+    .slider-item p {
+        padding-top: 30px;
+    }
+
+.slider ul {
+    display: inline-block;
+    font-size: 17px;
+    margin-top: 20px;
+    font-weight: bolder;
+}
+
+.slider li {
+    text-align: left;
+    padding: 2px;
+}
+
+.dots {
+    display: flex;
+    position: absolute;
+    align-self: flex-end;
+}
+
+.dot {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+    .dot:hover {
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .dot.current {
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+/*Production*/
+
+
+.production {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+    .production .item-wrapper {
+        padding: 10px;
+        box-sizing: border-box;
+        width: 25%;
+        border-radius: 10px;
+    }
+
+        .production .item-wrapper:hover {
+            animation-name: grow;
+            animation-duration: .4s;
+            animation-fill-mode: forwards;
+        }
+
+@keyframes grow {
+    to {
+        transform: scale(1.03);
+        padding: 0;
+        box-shadow: 0 0 10px #444;
+        border-radius: 15px;
+    }
+}
+
+.production .item {
+    background-color: rgba(255, 255, 255, 0.3);
+    box-sizing: border-box;
+    padding: 5px;
+    border: 3px #cdcdcd solid;
+    border-radius: 5px;
+}
+
+    .production .item:hover {
+        border: 0;
+        background: linear-gradient(to top, rgb(104, 143, 190), #aaaeee, rgba(170, 170, 170, 0.3));
+        color: #fff;
+        text-shadow: 1px 1px 2px #000;
+    }
+
+.production .image {
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.production img {
+    width: 100%;
+    border: 1px #ddd solid;
+    border-radius: 10px;
+}
+
+.production a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.production .description {
+    box-sizing: border-box;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+}
+
+.production h3 {
+    padding: 2px;
+    line-height: 20px;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+
+/*Pagination*/
+
+.pagination.hidden {
+    display: none;
+}
+
+.pagination ul {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+.pagination li {
+    list-style-type: none;
+    background: #fff;
+    box-shadow: 0 0 1px #666;
+    border: 1px #999 solid;
+}
+
+.pagination a {
+    text-decoration: none;
+    cursor: pointer;
+    display: block;
+    height: 44px;
+    width: 44px;
+    line-height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+}
+
+.pagination li.current {
+    background: lightskyblue;
+    height: 45px;
+    width: 45px;
+    pointer-events: none;
+    cursor: default;
+}
+
+.pagination a.prev, .pagination a.next {
+    font-size: 30px;
+    position: relative;
+    top: -2px;
+    align-self: center;
+}
+
+.pagination li:hover {
+    transform: scale(1.05);
+    transition: 0.1s;
+    border: 1px #555 solid;
+}
+
+.pagination li.not-active {
+    pointer-events: none;
+    cursor: default;
+    background: #ccc;
+}
+
+/*Madia*/
+
+
+@media screen and (max-width: 1000px) {
+    .production .item-wrapper {
+        width: 33%;
+    }
+
+    .slider .slider-item:first-child ul {
+        display: none;
+    }
+}
+
+
+@media screen and (max-width: 700px) {
+    .production .item-wrapper {
+        width: 50%;
+    }
+
+    .slider .slider-item :not(h1):not(h2):not(h4) {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .production .item-wrapper {
+        width: 100%;
+    }
+
+    .dots {
+        display: none;
+    }
+
+    section[role=slider] .prev, section[role=slider] .next {
+        display: none;
+    }
+
+    .slider h1 {
+        font-size: 26px;
+    }
+
+    .slider h2 {
+        font-size: 26px;
+    }
+
+    .slider h4 {
+        font-size: 16px;
+    }
+
+    .production h3 {
+        font-size: 18px;
+    }
+
+    .production .item {
+        border-radius: 20px;
+    }
+
+    .production .item-wrapper:hover {
+        animation: none;
+    }
+}
