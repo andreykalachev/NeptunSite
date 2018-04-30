@@ -24,7 +24,7 @@
         cursor: pointer;
     }
 
-section[role=slider] .prev a, section[role=slider] .next a {
+.slider-arrow a {
     text-decoration: none;
     cursor: pointer;
     color: inherit;
@@ -35,26 +35,30 @@ a.not-active {
     cursor: default;
 }
 
-section[role=slider] .prev, section[role=slider] .next {
+.slider-arrow {
     position: absolute;
     top: 75px;
-    padding-left: 2%;
     font-size: 140px;
     z-index: 10;
     opacity: 0.05;
 }
 
+    .slider-arrow.prev {
+        left: 0;
+        padding-left: 2%;
+    }
+
+    .slider-arrow.next {
+        right: 0;
+        padding-right: 2%;
+    }
+
 section[role=slider]:hover .prev, section[role=slider]:hover .next {
     opacity: 0.3;
 }
 
-section[role=slider] .prev:hover, section[role=slider] .next:hover {
+.slider-arrow:hover {
     opacity: 0.7;
-}
-
-section[role=slider] .next {
-    right: 0;
-    padding-right: 2%;
 }
 
 .slider-item {
@@ -71,6 +75,10 @@ section[role=slider] .next {
     text-align: center;
     text-shadow: 1px 1px 3px #999;
 }
+
+    .slider-item:first-child {
+        display: flex;
+    }
 
     .slider-item h1 {
         line-height: 36px;
@@ -304,11 +312,19 @@ section[role=slider] .next {
     }
 
     .dots {
-        display: none;
+        display: none !important;
     }
 
     section[role=slider] .prev, section[role=slider] .next {
         display: none;
+    }
+
+    .slider-item:first-child {
+        display: flex !important;
+    }
+
+    .slider-item:not(:first-child) {
+        display: none !important;
     }
 
     .slider h1 {
