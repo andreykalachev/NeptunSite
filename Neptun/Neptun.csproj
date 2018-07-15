@@ -285,6 +285,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\contacts.css" />
     <Content Include="Content\header.css" />
     <Content Include="Content\home-page-style.css" />
     <Content Include="Content\production.css" />
@@ -363,6 +364,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\user\contacts.js" />
     <Content Include="Scripts\user\header-script.js" />
     <Content Include="Scripts\user\production.js" />
     <Content Include="Web.config">

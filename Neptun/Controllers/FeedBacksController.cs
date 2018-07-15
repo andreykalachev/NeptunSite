@@ -23,18 +23,17 @@ namespace Neptun.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Index([Bind(Include = "Id,LastName,FirstName,PhoneNuber,Email,Message")] FeedBack feedBack)
         {
             if (ModelState.IsValid)
             {
                 db.FeedBacks.Add(feedBack);
                 await db.SaveChangesAsync();
-                
-                return RedirectToAction("Index", "Home");
+
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
             }
 
-            return View();
+            return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
         }
 
         [Authorize(Roles = "Admin")]
@@ -68,7 +67,6 @@ namespace Neptun.Controllers
             db.FeedBacks.Remove(feedBack);
             await db.SaveChangesAsync();
             return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
-            return RedirectToAction("AdminInfo");
         }
 
         protected override void Dispose(bool disposing)

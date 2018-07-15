@@ -2,39 +2,41 @@
 
     var productionType = $("section.production").attr("data-type");
 
-    if (productionType == "") {
+    var screenCssPixelRatio = (window.outerWidth) / window.innerWidth;
+    var isZoomed = (screenCssPixelRatio < .98 || screenCssPixelRatio > 1.02);
+
+
+    if (productionType === "") {
         var currentSlideIndex = 0;
         var slidesCount = $(".slider-item:last").index();
         $(".dot").eq(currentSlideIndex).addClass("current");
 
         var displaySlide = function (nextIndex, showDirection = "right", hideTime = 800, hideDelay = 200, showTime = 1000) {
             if ($(window).outerWidth() > 500 && !document.hidden) {
-                $(".slider-item").eq(currentSlideIndex).delay(hideDelay).hide('slide', { direction: showDirection == "left" ? "right" : "left" }, hideTime);
-                $(".dot").removeClass("current");
 
-                if (nextIndex > slidesCount) {
-                    nextIndex = 0;
-                }
-                else if (nextIndex < 0) {
-                    nextIndex = slidesCount;
-                }
-                var newSlideIndex = $(".slider-item").eq(nextIndex);
-                currentSlideIndex = nextIndex;
+                var animationType = isZoomed ? "fade" : "slide";
+                if (nextIndex > slidesCount) { nextIndex = 0; }
+                else if (nextIndex < 0) { nextIndex = slidesCount; }
 
-                $(".dots").fadeOut(showTime / 4).delay(showTime / 2).fadeIn(showTime / 4, function () {
+                $(".slider-item").eq(currentSlideIndex).delay(hideDelay).hide(animationType, { direction: showDirection === "left" ? "right" : "left" }, hideTime);
+                $(".slider-item").eq(nextIndex).css("display", "flex").hide().show(animationType, { direction: showDirection }, showTime);
+
+                $(".dots").fadeOut(showTime / 4, function () {
+                    $(".dot").removeClass("current");
                     $(".dot").eq(nextIndex).addClass("current");
-                });
+                }).delay(showTime / 2).fadeIn(showTime / 4);
+
                 $(".slider-arrow a").addClass("not-active").fadeOut(showTime / 2).fadeIn(showTime / 2, function () {
                     $(this).removeClass("not-active");
                 });
 
-                newSlideIndex.css("display", "flex").hide().show('slide', { direction: showDirection }, showTime);
+                currentSlideIndex = nextIndex;
             }
         }
 
         var sliderInterval = null;
         function setIntervalFunc() {
-            if (sliderInterval == null)
+            if (sliderInterval == null && $(window).outerWidth() > 500)
                 sliderInterval = setInterval(function () { displaySlide(currentSlideIndex + 1) }, 5000);
         }
         function clearIntervalFunc() {
@@ -44,10 +46,8 @@
             }
         }
 
-        if ($(window).width() > 500) {
-            setIntervalFunc();
-            $("section[role=slider]").hover(function () { clearIntervalFunc() }, function () { setIntervalFunc() });
-        }
+        setIntervalFunc();
+        $("section[role=slider]").hover(function () { clearIntervalFunc() }, function () { setIntervalFunc() });
 
         $(window).resize(function () {
             if ($(window).outerWidth() <= 500) {
@@ -65,7 +65,7 @@
 
         $(".dot").click(function () {
             var nextSlideIndex = $(this).index();
-            if (currentSlideIndex == nextSlideIndex) return;
+            if (currentSlideIndex === nextSlideIndex) return;
             var direction = nextSlideIndex > currentSlideIndex ? "right" : "left";
             displaySlide(nextSlideIndex, direction);
         });
