@@ -22,7 +22,7 @@
         var textareaCloneNode = textareaClone.get(0);
 
         $(window).resize(function () {
-            textarea.trigger('input');
+            if (textarea.val() != "") textarea.trigger('input');
         });
 
         textarea.on('input', function () {
