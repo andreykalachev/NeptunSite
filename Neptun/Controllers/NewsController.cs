@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using Neptun.Models;
 using Neptun.Persistence;
+using Neptun.Models.ViewModels;
+using Neptun.Servises;
 
 namespace Neptun.Controllers
 {
@@ -17,10 +19,22 @@ namespace Neptun.Controllers
         private DataContext db = new DataContext();
 
         // GET: News
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int? page)
         {
-            var news = await db.News.ToListAsync();
-            return View(news.OrderByDescending(x => x.Date));
+            const int itemsPerPage = 12;
+            var currentPageIndex = page ?? 0;
+            var pageCount = (int)Math.Ceiling((double)db.News.Count() / itemsPerPage);
+
+            if (currentPageIndex < 0 || currentPageIndex >= pageCount)
+            {
+                return HttpNotFound();
+            }
+
+            var view = new NewsIndexViewModel(pageCount, currentPageIndex);
+            var news = db.News.OrderByDescending(x => x.Date);
+            view.News = await news.Skip(currentPageIndex * itemsPerPage).Take(itemsPerPage).ToListAsync();
+
+            return View(view);
         }
 
         [Authorize(Roles = "Admin")]
@@ -45,16 +59,18 @@ namespace Neptun.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Title,Date,Description")] News news)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Title,Date,Description,Photo,HttpPostedFilePhoto")] NewsCreateEditViewModel newsViewModel)
         {
             if (ModelState.IsValid)
             {
+                News news = newsViewModel;
+                news.Photo = FilesOperations.SaveImg(newsViewModel.HttpPostedFilePhoto);
                 db.News.Add(news);
                 await db.SaveChangesAsync();
                 return RedirectToAction("AdminInfo");
             }
 
-            return View(news);
+            return View(newsViewModel);
         }
 
         // GET: News/Edit/5
@@ -70,7 +86,7 @@ namespace Neptun.Controllers
             {
                 return HttpNotFound();
             }
-            return View(news);
+            return View((NewsCreateEditViewModel)news);
         }
 
         // POST: News/Edit/5
@@ -79,15 +95,25 @@ namespace Neptun.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Title,Date,Description")] News news)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Title,Date,Description,Photo,HttpPostedFilePhoto")] NewsCreateEditViewModel newsViewModel)
         {
+
             if (ModelState.IsValid)
             {
+                News news = newsViewModel;
+
+                if (newsViewModel.HttpPostedFilePhoto != null && newsViewModel.HttpPostedFilePhoto.ContentLength > 0)
+                {
+                    FilesOperations.DeleteFile(news.Photo);
+                    news.Photo = FilesOperations.SaveImg(newsViewModel.HttpPostedFilePhoto);
+                }
+
                 db.Entry(news).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("AdminInfo");
             }
-            return View(news);
+
+            return View(newsViewModel);
         }
 
         // GET: News/Delete/5
@@ -112,6 +138,7 @@ namespace Neptun.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             News news = await db.News.FindAsync(id);
+            FilesOperations.DeleteFile(news.Photo);
             db.News.Remove(news);
             await db.SaveChangesAsync();
             return RedirectToAction("AdminInfo");

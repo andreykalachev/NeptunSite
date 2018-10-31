@@ -30,7 +30,10 @@ namespace Neptun.Persistence
             #region News
 
             modelBuilder.Entity<News>().HasKey(x => x.Id);
-            modelBuilder.Entity<News>().Property(x => x.Description).HasMaxLength(10000);
+            modelBuilder.Entity<News>().Property(x => x.Description).HasMaxLength(50000);
+
+            modelBuilder.Entity<News>().Property(x => x.Photo).HasMaxLength(200);
+            modelBuilder.Entity<News>().Property(x => x.Photo).IsOptional();
 
             #endregion
 

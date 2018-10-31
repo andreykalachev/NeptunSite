@@ -250,6 +250,14 @@
     <Compile Include="Migrations\201804051722114_ProductMetadataFieldsSizeIncreaed.Designer.cs">
       <DependentUpon>201804051722114_ProductMetadataFieldsSizeIncreaed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810311513190_AddPhotoToNews.cs" />
+    <Compile Include="Migrations\201810311513190_AddPhotoToNews.Designer.cs">
+      <DependentUpon>201810311513190_AddPhotoToNews.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810311548356_BugTest.cs" />
+    <Compile Include="Migrations\201810311548356_BugTest.Designer.cs">
+      <DependentUpon>201810311548356_BugTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Employee.cs" />
@@ -257,6 +265,8 @@
     <Compile Include="Models\FeedBack.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Production.cs" />
+    <Compile Include="Models\ViewModels\NewsCreateEditViewModel.cs" />
+    <Compile Include="Models\ViewModels\NewsIndexViewModel.cs" />
     <Compile Include="Models\ViewModels\ProductionListViewModel.cs" />
     <Compile Include="Models\ViewModels\ContactsViewModel.cs" />
     <Compile Include="Models\ViewModels\EmployeeCreateEditViewModel.cs" />
@@ -288,6 +298,7 @@
     <Content Include="Content\contacts.css" />
     <Content Include="Content\header.css" />
     <Content Include="Content\home-page-style.css" />
+    <Content Include="Content\news.css" />
     <Content Include="Content\production.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -367,6 +378,7 @@
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\user\contacts.js" />
     <Content Include="Scripts\user\header-script.js" />
+    <Content Include="Scripts\user\news.js" />
     <Content Include="Scripts\user\production.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -484,6 +496,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804051722114_ProductMetadataFieldsSizeIncreaed.resx">
       <DependentUpon>201804051722114_ProductMetadataFieldsSizeIncreaed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810311513190_AddPhotoToNews.resx">
+      <DependentUpon>201810311513190_AddPhotoToNews.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810311548356_BugTest.resx">
+      <DependentUpon>201810311548356_BugTest.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
