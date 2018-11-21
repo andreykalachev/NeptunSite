@@ -56,6 +56,8 @@ namespace Neptun.Persistence
             modelBuilder.Entity<FeedBack>().HasKey(x => x.Id);
             modelBuilder.Entity<FeedBack>().Property(x => x.Message).HasMaxLength(1000);
             modelBuilder.Entity<FeedBack>().Property(x => x.PhoneNuber).IsOptional();
+            modelBuilder.Entity<FeedBack>().Property(x => x.LastName).IsOptional();
+            modelBuilder.Entity<FeedBack>().Property(x => x.Date).IsOptional();
 
             #endregion
 

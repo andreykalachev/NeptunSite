@@ -2,7 +2,7 @@
 
 @{
     var title = string.IsNullOrEmpty(Model.PageTitle) ? Model.Title : Model.PageTitle;
-    ViewBag.Title = "Нуптун | Продукция | " + title;
+    ViewBag.Title = "Нептун | Продукция | " + title;
     var canonical = "http://neptun-odessa.com/Productions/Info/" + Model.Id;
 }
 
@@ -38,6 +38,19 @@
     </div>
     <div class="pl-4">
         @Html.Raw(Model.Description)
+    </div>
+    
+    <div class="cooperation-container">
+        <section class="cooperation">
+            <a href="/Company#feedback">
+                <img src="/Pictures/Cooperation.png" alt="Торговый дом Нептун">
+                <article>
+                    <p>
+                        Задайте интересующие вопросы и в ближайшее время мы свяжемся с вами.
+                    </p>
+                </article>
+            </a>
+        </section>
     </div>
 
 </div>

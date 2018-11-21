@@ -82,7 +82,7 @@
 
     $('#lastName').on('input', function () {
         var lastName = $(this);
-        validate(lastName, 25, true, null);
+        validate(lastName, 25, false, null);
     });
 
     $('#message').on('input', function () {

@@ -11,7 +11,6 @@ namespace Neptun.Models
     {
         [HiddenInput(DisplayValue = false)] public int Id { get; set; }
 
-        [Required(ErrorMessage = "Обязательно для заполнения")]
         [Display(Name = "Фамилия")]
         public string LastName { get; set; }
 
@@ -33,6 +32,11 @@ namespace Neptun.Models
         [Display(Name = "Сообщение")]
         [DataType(DataType.MultilineText)]
         public string Message { get; set; }
+
+        [Display(Name = "Дата")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime ?Date { get; set; }
 
     }
 }

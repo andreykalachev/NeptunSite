@@ -27,6 +27,7 @@ namespace Neptun.Controllers
         {
             if (ModelState.IsValid)
             {
+                feedBack.Date = DateTime.Today;
                 db.FeedBacks.Add(feedBack);
                 await db.SaveChangesAsync();
 
