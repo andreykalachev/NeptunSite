@@ -84,7 +84,8 @@
         var productionTypeInfo = {
             "HfProcessing": 1,
             "HfCommunication": 2,
-            "HfProtection": 3
+            "HfProtection": 3,
+            "Cleaning": 4
         }
         const slideIndex = productionTypeInfo[productionType];
 

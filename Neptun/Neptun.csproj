@@ -452,7 +452,6 @@
     <Content Include="Views\FeedBacks\Index.cshtml" />
     <Content Include="Views\FeedBacks\AdminInfo.cshtml" />
     <Content Include="Views\Home\Admin.cshtml" />
-    <Content Include="Views\Productions\TreatmentFacilities.cshtml" />
     <Content Include="Views\Productions\EmptyProductionPage.cshtml" />
     <Content Include="Views\Productions\Cabinets.cshtml" />
   </ItemGroup>

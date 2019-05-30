@@ -35,6 +35,13 @@
                       "линиях ЛЭП 110-330 кВ. Одноканальные и многоканальный системы связи АВС-ЦМ, АВС-1-1б АВС-3-1, диспетчерские каналы АСКУЭ";
         keywords += "АВС-1-1, АВС-3-1, АВС-ЦМ, АВС, АНС, аппаратура высокочастотной связи, ВЧ связь, ЛЭП, 35-750кВ";
     }
+    else if (Model.ProductType == ProductType.Cleaning)
+    {
+        canonical += "?productType=Cleaning";
+        titleAttr = "Нептун | Продукция | Очистные сооружения";
+        description = "";
+        keywords += "";
+    }
     ViewBag.Title = titleAttr;
 }
 
@@ -89,7 +96,7 @@
                                 </li>
                                 <hr>
                                 <li>
-                                    <a href="@Url.Action("TreatmentFacilities", "Productions")">Очистные сооружения</a>
+                                    <a href='@Url.Action("Index", "Productions", new {productType = ProductType.Cleaning})'>Очистные сооружения</a>
                                 </li>
                                 <hr>
                                 <li>
@@ -167,7 +174,20 @@
                             на линиях ЛЭП
                         </p>
                     </div>
+                    <div class="slider-item">
+                        <a href="@Url.Action("Index", "Productions", new {productType = ProductType.Cleaning})">
+                            <span></span>
+                        </a>
+                        <h2>
+                            Очистные сооружения
+                        </h2>
+                        <h4>Системы очистки бытовых сточных вод и нефтеловушки</h4>
+                        <p>
+                            Системы очистки бытовых сточных вод - это новый вид оборудования, которое может быть использовано как для очистки жилых комплексов, так и большими корпоративными хозяйствами.
+                        </p>
+                    </div>
                     <div class="dots">
+                        <div class="dot"></div>
                         <div class="dot"></div>
                         <div class="dot"></div>
                         <div class="dot"></div>

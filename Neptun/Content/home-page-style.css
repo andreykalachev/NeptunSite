@@ -188,6 +188,10 @@ p {
         box-shadow: 4px 3px 4px #555;
     }
 
+    .production .card-big li {
+        list-style-position: inside;
+    }
+
 /*about us*/
 
 .about-us {

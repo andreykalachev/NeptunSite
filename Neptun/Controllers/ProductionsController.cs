@@ -99,6 +99,8 @@ namespace Neptun.Controllers
                 return HttpNotFound();
             }
 
+            //if (production.ProductType == ProductType.Cleaning) return RedirectToAction(production.PageDescription);
+
             return View(production);
 
         }

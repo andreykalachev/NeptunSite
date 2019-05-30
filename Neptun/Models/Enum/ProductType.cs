@@ -18,6 +18,9 @@ namespace Neptun.Models.Enum
         HfProtection = 2,
 
         [Display(Name = "Другое")]
-        Other = 3
+        Other = 3,
+
+        [Display(Name = "Очистные сооружения")]
+        Cleaning = 4
     }
 }
