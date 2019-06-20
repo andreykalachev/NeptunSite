@@ -43,11 +43,11 @@ namespace Neptun.Models
         public string PageTitle { get; set; }
 
         [Display(Name = "Description")]
-        [MaxLength(300, ErrorMessage = "Допустимая длина 300 превышена")]
+        [MaxLength(1000, ErrorMessage = "Допустимая длина 300 превышена")]
         public string PageDescription { get; set; }
 
         [Display(Name = "Keywords")]
-        [MaxLength(300, ErrorMessage = "Допустимая длина 300 превышена")]
+        [MaxLength(1000, ErrorMessage = "Допустимая длина 300 превышена")]
         public string PageKeywords { get; set; }
     }
 }

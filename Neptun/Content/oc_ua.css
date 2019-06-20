@@ -1,0 +1,258 @@
+
+.page-container {
+    width: 100%;
+    padding: 10px 5%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h3, h4 {
+    text-align: center;
+    padding: 15px;
+    padding-top: 25px;
+}
+
+h1 {
+    font-size: 32px;
+    padding: 15px;
+    text-shadow: 1px 1px 1px #fff;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+h4 {
+    font-size: 18px;
+}
+
+#links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 60%;
+    margin: auto;
+    padding-bottom: 25px;
+}
+
+    #links a {
+        display: inline-block;
+        width: 25%;
+        text-align: center;
+        padding: 10px;
+        margin: 5px;
+        border: solid 1px #666;
+        border-radius: 4px;
+        background-color: rgba(79, 132, 196, 0.25);
+        color: #000;
+        text-decoration: none;
+        font-size: 14px;
+        font-style: bold;
+    }
+
+        #links a:hover {
+            cursor: pointer;
+            border: solid 1px #666;
+            background-color: rgba(79, 132, 196, 0.3);
+            transform: scale(1.02);
+            box-shadow: 0px 0px 1px rgba(79, 132, 196, 1);
+        }
+
+
+p#description {
+    text-indent: 3%;
+    text-shadow: 1px 0px #999;
+    font-size: 16px;
+    text-align: justify;
+}
+
+p.note {
+    font-style: italic;
+    font-size: 12px;
+    padding-left: 3%;
+}
+
+    p.note::before {
+        content: "*";
+    }
+
+#technical_details {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+}
+
+.image_block {
+    display: flex;
+    padding: 5px 5%;
+    justify-content: space-around;
+    width: 100%;
+    box-sizing: border-box;
+    align-content: center;
+    align-items: center;
+}
+
+    .image_block div {
+        box-sizing: border-box;
+        margin: 1%;
+    }
+
+#first_image_block div:first-child {
+    width: 55%;
+}
+
+#first_image_block div:last-child {
+    width: 25%;
+}
+
+#second_image_block div:first-child {
+    width: 45%;
+}
+
+#second_image_block div:last-child {
+    width: 45%;
+}
+
+.image_block img {
+    width: 100%;
+}
+
+
+td {
+    height: 50px;
+    border: solid 1px black;
+    text-align: center;
+}
+
+
+#technical_details_table td {
+    width: 12%;
+}
+
+#clean_params_table td {
+    width: 35%;
+}
+
+#advantages {
+    margin: 1px;
+    box-sizing: border-box;
+}
+
+    #advantages ul {
+        list-style-position: inside;
+    }
+
+
+/*footer*/
+
+footer {
+    background-color: #4F84C4;
+    width: 100%;
+    z-index: 10;
+}
+
+    footer .page-container {
+        text-align: center;
+        color: #fff;
+        padding: 0;
+        margin: 0;
+    }
+
+    footer h4 {
+        padding-top: 15px;
+        font-size: 15px;
+        text-shadow: none;
+        font-weight: normal;
+    }
+
+
+/*cooperation*/
+
+.cooperation {
+    max-width: 850px;
+}
+
+    .cooperation img {
+        margin-right: 10px;
+        width: 100%;
+        max-width: 90px;
+        max-height: 90px;
+    }
+
+    .cooperation p {
+        text-align: center;
+    }
+
+    .cooperation a {
+        margin: 10px 0;
+        padding: 5px 0;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        text-decoration: none;
+        cursor: pointer;
+        width: 100%;
+        color: inherit;
+        font-size: 17px;
+        text-shadow: 1px 1px 1px #aaa;
+        box-shadow: 1px 1px 1px rgba(248, 175, 175, 0.410);
+        background-color: rgba(248, 175, 175, 0.210);
+    }
+
+        .cooperation a:hover {
+            background-color: rgba(248, 175, 175, 0.450);
+        }
+
+.cooperation-container {
+    margin: 0 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.cooperation p {
+    margin: 0;
+}
+
+
+@media screen and (max-width: 580px) {
+    #technical_details {
+        display: none;
+    }
+
+    .image_block div:not(#small_scale) {
+        display: none;
+    }
+
+    div#wiring_diagram {
+        display: none;
+    }
+
+    .image_block div#small_scale {
+        width: 100%;
+    }
+
+    p#description {
+        font-size: 14px;
+    }
+
+    #advantages li {
+        font-size: 13px;
+    }
+
+    #clean_params_table {
+        font-size: 13px;
+    }
+
+    footer {
+        font-size: 13px;
+    }
+
+    #links {
+        width: 80%;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+}
