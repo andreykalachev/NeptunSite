@@ -308,6 +308,7 @@
     <Content Include="Content\home-page-style.css" />
     <Content Include="Content\news.css" />
     <Content Include="Content\oc_ua.css" />
+    <Content Include="Content\oil_traps.css" />
     <Content Include="Content\production.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -331,6 +332,10 @@
     <Content Include="Pictures\oc_ua\img_2.png" />
     <Content Include="Pictures\oc_ua\img_3.jpg" />
     <Content Include="Pictures\oc_ua\img_4.jpg" />
+    <Content Include="Pictures\oil_traps\1.jpg" />
+    <Content Include="Pictures\oil_traps\2.jpg" />
+    <Content Include="Pictures\oil_traps\3.png" />
+    <Content Include="Pictures\separators\1.png" />
     <Content Include="Pictures\TD-foto.jpg" />
     <Content Include="Pictures\TD-foto2.jpg" />
     <Content Include="Pictures\TreatmentFacilities\treatmant-1.jpg" />
@@ -364,6 +369,7 @@
     <Content Include="Pdf\oc\Tech_passport_OC_1.pdf" />
     <Content Include="Pdf\oc\Tech_passport_OC_2.pdf" />
     <Content Include="Pdf\oc\Tech_passport_OC_3.pdf" />
+    <Content Include="Pdf\separators\specification.pdf" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\Neptun20180127114900 - Web Deploy.pubxml" />
     <Content Include="Scripts\bootstrap.min.js.map" />

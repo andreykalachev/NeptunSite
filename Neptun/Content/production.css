@@ -304,6 +304,10 @@ section[role=slider]:hover .prev, section[role=slider]:hover .next {
     .slider .slider-item :not(h1):not(h2):not(h4) {
         display: none;
     }
+
+    #expendable-description  {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 500px) {
@@ -350,4 +354,28 @@ section[role=slider]:hover .prev, section[role=slider]:hover .next {
     .production .item-wrapper:hover {
         animation: none;
     }
+}
+
+#expendable-description {
+    padding: 20px 6%;
+}
+
+    #expendable-description p {
+        text-indent: 5%;
+        margin-bottom: 5px;
+    }
+
+    #expendable-description ul {
+        width: 80%;
+        margin: 15px 0;
+        align-self: center;
+    }
+
+.expanded {
+    display: flex;
+    flex-direction: column;
+}
+
+.collapsed {
+    display: none;
 }
