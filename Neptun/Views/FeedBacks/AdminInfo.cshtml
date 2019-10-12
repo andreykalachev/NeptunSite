@@ -46,10 +46,68 @@
                 </td>
                 <td>
                     <button class="btn btn-danger" onclick="deleteItem(@item.Id)">Удалить</button>
+                    <button type="button" style="display: none" class="btn btn-primary" data-toggle="modal" data-target="#Modal" 
+                            onclick="openSendEmailModalWindow('@item.Email', '@item.FirstName', '@item.LastName', '@item.Date')">Ответить</button>
                 </td>
             </tr>
         }
     </table>
+    <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label class="col-md-2" for="Email">Почта</label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line" id="Email" name="Email" type="email" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2" for="Password">Пароль</label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line" id="Password" name="Password" type="password" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2" for="DestinationEmail">Почта получателя</label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line" id="DestinationEmail" name="DestinationEmail" type="email" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2" for="Header">Заголовок</label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line" id="Header" name="Header" type="text" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2" for="Subject">Тема</label>
+                        <div class="col-md-10">
+                            <input class="form-control text-box single-line" id="Subject" name="Subject" type="text" value="" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2" for="Message">Текст</label>
+                        <div class="col-md-10">
+                            <textarea  class="form-control" rows="8" id="Message" name="Message" type="text" value="" ></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="closeModal" type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                    <button type="button" class="btn btn-primary" onclick="sendEmail()">Отправить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 
 @section Scripts{
@@ -70,5 +128,39 @@
                 });
             }
         };
+        function openSendEmailModalWindow(destinationEmail, firstName, lastName, date) {
+            document.getElementById("Header").value = "Ответ от завода \"Нептун\"";
+            document.getElementById("Subject").value = "Ответ на запрос оставленый " + date.slice(3, 5) + "/" + date.slice(0, 2) + date.slice(5, 10) ;
+            document.getElementById("DestinationEmail").value = destinationEmail;
+            document.getElementById("Message").value = "Здравствуйте, " + firstName + " " + lastName + "! Спасибо за проявленный интерес к нашей продукции.";
+        };
+        function sendEmail(item) {
+
+            var data = {
+                Email: $('#Email').val().trim(),
+                Password: $('#Password').val().trim(),
+                DestinationEmail: $('#DestinationEmail').val().trim(),
+                Header: $('#Header').val().trim(),
+                Subject: $('#Subject').val().trim(),
+                Message: $('#Message').val().trim()
+            };
+            $.ajax({
+                type: "POST",
+                url: "/FeedBacks/SendEmail",
+                data: data,
+                async: true,
+                success: function () {;
+                    alert("Ваше сообщение отправлено");
+                    document.getElementById("closeModal").click();
+                },
+                error: function (data) {
+                    alert("Сообщение не отправлено, извините. Попробуйте другой способ.");
+                }
+            });
+        };
     </script>
+    
+    <style>
+
+    </style>
 }
